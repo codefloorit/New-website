@@ -139,9 +139,12 @@ const ITServiceDetail = () => {
             {service.process.map((step, i) => (
               <li key={step} className="relative bg-[#060913] border border-white/5 p-6 h-full group transition-all hover:border-[#D4AF37]/30 shadow-2xl">
                 <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#D4AF37]/20 group-hover:border-[#D4AF37]" />
-                <span className="font-mono text-4xl font-black text-[#D4AF37]/10 mb-4 block group-hover:text-[#D4AF37]/25 transition-colors">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                {/* Decorative watermark number, drawn from CSS; the <ol> carries the order. */}
+                <span
+                  aria-hidden="true"
+                  data-step={String(i + 1).padStart(2, "0")}
+                  className="font-mono text-4xl font-black text-[#D4AF37]/10 mb-4 block group-hover:text-[#D4AF37]/25 transition-colors before:content-[attr(data-step)]"
+                />
                 <h3 className="font-serif font-bold text-white text-base leading-snug tracking-wide">{step}</h3>
               </li>
             ))}

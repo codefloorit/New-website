@@ -27,7 +27,7 @@ const PlaceholderFill = ({ label = "Screenshot coming soon", wip = false }) => (
 // Wraps an <img> with a graceful fallback to PlaceholderFill if the source
 // fails to load at runtime (e.g. a broken or unreachable external URL) —
 // not just when no image was provided at all.
-const MockupImage = ({ image, title, alt, eager, wip, label }) => {
+const MockupImage = ({ image, srcSet, sizes, title, alt, eager, wip, label }) => {
   const [failed, setFailed] = useState(false);
 
   if (!image || failed) return <PlaceholderFill label={label} wip={wip} />;
@@ -35,6 +35,8 @@ const MockupImage = ({ image, title, alt, eager, wip, label }) => {
   return (
     <img
       src={image}
+      srcSet={srcSet}
+      sizes={srcSet ? sizes : undefined}
       alt={alt || `${title} screenshot`}
       width={1400}
       height={680}
@@ -55,7 +57,7 @@ const BrowserFrame = ({ image, title, wip, ...img }) => (
         <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
         <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
       </div>
-      <div className="ml-3 flex-1 truncate rounded-full bg-white/5 px-3 py-1 text-center font-mono text-[10px] text-white/30">
+      <div className="ml-3 flex-1 truncate rounded-full bg-white/5 px-3 py-1 text-center font-mono text-[10px] text-white/60">
         {title || "your-project.com"}
       </div>
     </div>
@@ -104,11 +106,12 @@ const DashboardFrame = ({ image, title, wip, ...img }) => (
   </div>
 );
 
-const ProjectMockup = ({ type = "browser", image, title, alt, eager = false, className = "", compact = false, wip = false }) => {
+// sizes: the rendered width of the mockup, so the browser can pick the right srcset entry.
+const ProjectMockup = ({ type = "browser", image, srcSet, sizes = "(min-width: 1024px) 600px, 100vw", title, alt, eager = false, className = "", compact = false, wip = false }) => {
   const Frame = type === "mobile" ? MobileFrame : type === "dashboard" ? DashboardFrame : BrowserFrame;
   return (
     <div className={className}>
-      <Frame image={image} title={title} alt={alt} eager={eager} compact={compact} wip={wip} />
+      <Frame image={image} srcSet={srcSet} sizes={sizes} title={title} alt={alt} eager={eager} compact={compact} wip={wip} />
     </div>
   );
 };

@@ -48,6 +48,7 @@ export const itServices = [
     relatedProjects: ["aranya-palace", "oracle-legal-consultancy"],
     relatedInsights: ["website-vs-web-application", "website-development-cost-factors-india", "how-to-choose-web-development-company-ahmedabad"],
     faqs: [
+      { q: "What is business website development?", a: "Business website development is the planning, design and building of a company's public website: the pages that explain what the business does, show its work and let customers get in touch." },
       { q: "How long does it take to build a business website?", a: "Most business websites are delivered in 3–6 weeks. The timeline depends on the number of pages, how much content is ready, and any integrations such as booking or payment." },
       { q: "How much does a business website cost?", a: "The cost depends on the number of pages, whether the design is fully custom, the amount of content to be written, and integrations. Codefloor IT gives a clear written quote after a short scoping call, before any work starts." },
       { q: "Will the website work on mobile phones?", a: "Yes. Every website is built responsive and tested on mobile, tablet and desktop screen sizes before launch." },
@@ -109,6 +110,8 @@ export const itServices = [
     relatedProjects: ["leadhunter", "doctor-appointment-booking", "hotel-booking"],
     relatedInsights: ["website-vs-web-application", "custom-booking-system-features", "custom-crm-vs-ready-made-crm"],
     faqs: [
+      { q: "What is custom web application development?", a: "Custom web application development is the design and building of browser-based software made for one organization's own process, such as a booking system, CRM, dashboard or client portal, instead of adapting a ready-made product." },
+      { q: "What is custom CRM development?", a: "Custom CRM development means building a customer relationship management system around your own sales stages, data fields, follow-up rules and reports, rather than subscribing to a generic CRM and working around its limits." },
       { q: "What is the difference between a website and a web application?", a: "A website mainly presents information. A web application lets users do something: log in, book, pay, or manage data. If people need accounts or your team needs a dashboard, you need a web application." },
       { q: "When should a business build a custom web application?", a: "When ready-made software does not fit your process, when licence costs grow with every user, or when the workflow itself is your competitive advantage. If a standard tool already covers what you need, we will say so." },
       { q: "How much does a custom web application cost?", a: "Cost is driven by the number of user roles, screens, integrations and business rules. Codefloor IT scopes the first release with you, then gives a clear written quote for that scope. Later phases are quoted separately." },
@@ -201,6 +204,7 @@ export const itServices = [
     relatedProjects: ["oracle-legal-consultancy", "aranya-palace"],
     relatedInsights: ["when-to-replace-old-website", "why-your-website-speed-affects-revenue"],
     faqs: [
+      { q: "What is website modernization?", a: "Website modernization is the process of updating an outdated website's design, code, speed, mobile experience and security, either by improving the existing site or rebuilding it on a current platform, while keeping its content and search visibility." },
       { q: "Why should a business modernize an old website?", a: "An outdated website loads slowly, works poorly on phones, is harder to keep secure, and makes the business look less active than it is. Modernizing fixes those problems and usually makes the site easier to update." },
       { q: "When should a website be rebuilt rather than patched?", a: "Rebuild when the platform is unsupported, when small changes need a developer every time, or when the structure no longer matches what the business offers. If the foundation is sound, targeted fixes are cheaper and we will recommend them." },
       { q: "Will we lose our Google rankings in a redesign?", a: "A careless redesign can. We keep existing URLs where possible, redirect every changed URL to its new address, and carry over titles, content and structured data, which is what protects search visibility during a migration." },

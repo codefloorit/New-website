@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Lightbulb, PenTool, Code2, FlaskConical, Rocket, TrendingUp } from "lucide-react";
 
 const stages = [
@@ -30,7 +30,7 @@ const ProcessJourney = () => {
           {stages.map((stage, i) => {
             const Icon = stage.icon;
             return (
-              <motion.div
+              <m.div
                 key={stage.label}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ const ProcessJourney = () => {
                   <Icon size={20} />
                 </div>
                 <p className="font-serif text-base font-bold tracking-wide text-white">{stage.label}</p>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ImageOff } from "lucide-react";
 
 // Masked-reveal screenshot gallery. Shows placeholder tiles when no images exist yet.
@@ -8,7 +8,7 @@ const ProjectGallery = ({ images = [], title }) => {
   return (
     <div className="grid gap-6 sm:grid-cols-2">
       {slots.map((src, i) => (
-        <motion.div
+        <m.div
           key={i}
           initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
           whileInView={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
@@ -24,7 +24,7 @@ const ProjectGallery = ({ images = [], title }) => {
               <span className="font-mono text-[10px] uppercase tracking-widest text-white/25">Gallery image pending</span>
             </div>
           )}
-        </motion.div>
+        </m.div>
       ))}
     </div>
   );

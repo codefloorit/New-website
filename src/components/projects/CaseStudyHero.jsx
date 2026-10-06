@@ -28,14 +28,14 @@ const CaseStudyHero = ({ project }) => {
 
           <h1 className="flex flex-wrap gap-x-3 text-4xl font-serif font-bold leading-[1.1] tracking-wide text-white sm:text-6xl">
             {words.map((word, i) => (
-              <span key={i} className="animate-rise" style={{ animationDelay: `${0.05 * i}s` }}>
+              <span key={i} className="animate-rise" style={{ animationDelay: `${0.04 * i}s` }}>
                 {word}
               </span>
             ))}
           </h1>
 
           <p
-            style={{ animationDelay: "0.3s" }}
+            style={{ animationDelay: "0.15s" }}
             className="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg animate-rise"
           >
             {project.tagline}
@@ -66,6 +66,8 @@ const CaseStudyHero = ({ project }) => {
           <ProjectMockup
             type={project.mockup}
             image={project.image}
+            srcSet={project.imageSrcSet}
+            sizes="(min-width: 1280px) 1216px, 100vw"
             title={project.title}
             alt={project.imageAlt}
             eager

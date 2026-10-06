@@ -16,7 +16,7 @@ export default {
       },
       fontFamily: {
         display: ["'Plus Jakarta Sans'", "sans-serif"],
-        body: ["'Inter'", "sans-serif"],
+        body: ["'Inter'", "'Inter Fallback'", "sans-serif"],
         mono: ["'IBM Plex Mono'", "monospace"],
       },
       backgroundImage: {
@@ -39,8 +39,10 @@ export default {
         "float-slow": "float 9s ease-in-out infinite",
         "pulse-glow": "pulseGlow 3.5s ease-in-out infinite",
         marquee: "marquee 30s linear infinite",
-        // Entrance for above-the-fold headings: pure CSS so text paints without waiting for JS.
-        rise: "rise 0.7s cubic-bezier(0.25, 1, 0.5, 1) both",
+        // Entrance for above-the-fold content. Pure CSS and transform-only: the text is
+        // visible in the very first frame (so it counts for LCP) and only slides into place.
+        // Do not add opacity here; content that starts at opacity 0 is ignored for LCP.
+        rise: "rise 0.6s cubic-bezier(0.25, 1, 0.5, 1) both",
         "spin-slow": "spin 12s linear infinite",
       },
       keyframes: {
@@ -53,8 +55,8 @@ export default {
           "50%": { opacity: 1, transform: "scale(1.06)" },
         },
         rise: {
-          from: { opacity: 0, transform: "translateY(24px)" },
-          to: { opacity: 1, transform: "translateY(0)" },
+          from: { transform: "translateY(18px)" },
+          to: { transform: "translateY(0)" },
         },
         marquee: {
           "0%": { transform: "translateX(0)" },

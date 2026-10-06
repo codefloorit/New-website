@@ -9,7 +9,7 @@ const HEADLINE_LINES = [
 ];
 
 // Entrance animations are CSS (animate-rise + delay) rather than JS-driven, so
-// the headline is in the prerendered HTML and paints before the bundle loads.
+// the headline is in the prerendered HTML and paints in the first frame.
 
 const Hero = () => {
   let wordIndex = 0;
@@ -43,7 +43,7 @@ const Hero = () => {
                 return (
                   <span
                     key={word}
-                    style={{ animationDelay: `${0.1 + i * 0.06}s` }}
+                    style={{ animationDelay: `${i * 0.04}s` }}
                     className={`mr-4 inline-block animate-rise ${
                       isLast ? "bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] bg-clip-text text-transparent" : ""
                     }`}
@@ -56,11 +56,11 @@ const Hero = () => {
           ))}
         </h1>
 
-        <p style={{ animationDelay: "0.55s" }} className="mt-8 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg animate-rise">
+        <p style={{ animationDelay: "0.15s" }} className="mt-8 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg animate-rise">
           {siteConfig.description}
         </p>
 
-        <div style={{ animationDelay: "0.7s" }} className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center animate-rise">
+        <div style={{ animationDelay: "0.2s" }} className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center animate-rise">
           <Link
             to="/contact"
             className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-[#060913] shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_45px_-6px_rgba(212,175,55,0.55)]"

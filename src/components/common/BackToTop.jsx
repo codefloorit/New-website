@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 
 const BackToTop = () => {
@@ -16,7 +16,7 @@ const BackToTop = () => {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.button
+        <m.button
           type="button"
           onClick={scrollToTop}
           aria-label="Back to top"
@@ -34,7 +34,7 @@ const BackToTop = () => {
             size={18} 
             className="stroke-[2.5] text-[#F5D76E] transition-transform duration-300 group-hover:-translate-y-0.5" 
           />
-        </motion.button>
+        </m.button>
       )}
     </AnimatePresence>
   );

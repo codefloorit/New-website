@@ -11,10 +11,18 @@ const dist = path.join(root, "dist");
 const server = await import(pathToFileURL(path.join(root, "dist-ssr", "entry-server.js")).href);
 const { routes, getSeo, headTags, render, siteConfig, itServices, projects, blogPosts } = server;
 
-const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
+let template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 if (!template.includes("<!--seo-->") || !template.includes('<div id="root"></div>')) {
   throw new Error("index.html is missing the <!--seo--> or #root placeholder");
 }
+
+// Inline the stylesheet. It is small (about 10 KB gzipped) and as a <link> it
+// blocks first paint behind an extra round trip; inlined, the HTML alone is
+// enough to render the page.
+const cssLink = template.match(/<link rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/);
+if (!cssLink) throw new Error("index.html has no stylesheet link to inline");
+const css = fs.readFileSync(path.join(dist, cssLink[1]), "utf8");
+template = template.replace(cssLink[0], () => `<style>${css}</style>`);
 
 const write = (file, contents) => {
   const out = path.join(dist, file);
@@ -22,14 +30,16 @@ const write = (file, contents) => {
   fs.writeFileSync(out, contents);
 };
 
-const html = (pathname) =>
-  template
+const html = async (pathname) => {
+  const body = await render(pathname);
+  return template
     .replace("<!--seo-->", () => headTags(getSeo(pathname)))
-    .replace('<div id="root"></div>', () => `<div id="root">${render(pathname)}</div>`);
+    .replace('<div id="root"></div>', () => `<div id="root">${body}</div>`);
+};
 
 // "/" -> index.html, "/about" -> about.html (served at /about via cleanUrls in vercel.json)
-for (const r of routes) write(r.path === "/" ? "index.html" : `${r.path.slice(1)}.html`, html(r.path));
-write("404.html", html("/404"));
+for (const r of routes) write(r.path === "/" ? "index.html" : `${r.path.slice(1)}.html`, await html(r.path));
+write("404.html", await html("/404"));
 
 const url = (p) => `${siteConfig.url}${p === "/" ? "/" : p}`;
 

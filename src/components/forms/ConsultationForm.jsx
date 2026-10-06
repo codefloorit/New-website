@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CheckCircle2, Send, Loader2 } from "lucide-react";
 import { Field, inputClass } from "./formFields";
 import { sendToWhatsApp } from "../../utils/whatsapp";
@@ -48,7 +48,7 @@ const ConsultationForm = () => {
 
   if (status === "success") {
     return (
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0, y: 10 }} 
         animate={{ opacity: 1, y: 0 }} 
         className="relative bg-[#0A0F1A] border border-white/5 p-10 text-center shadow-2xl overflow-hidden"
@@ -65,7 +65,7 @@ const ConsultationForm = () => {
         >
           Book another slot
         </button>
-      </motion.div>
+      </m.div>
     );
   }
 

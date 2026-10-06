@@ -1,4 +1,45 @@
-/* Web fonts are loaded from index.html (preconnect + stylesheet link). */
+/* Self-hosted fonts (latin subset, files in public/fonts). font-display: swap
+   lets text paint in the fallback immediately, so first paint never waits on
+   a font. Each font loads when the browser first needs it. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/inter-latin-variable.woff2") format("woff2");
+}
+/* Arial resized to Inter's metrics, so the swap from fallback to Inter does
+   not re-wrap paragraphs or shift the layout. */
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  size-adjust: 107.06%;
+  ascent-override: 90.49%;
+  descent-override: 22.56%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/plus-jakarta-sans-latin-variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-mono-latin-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-mono-latin-600.woff2") format("woff2");
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,8 +54,20 @@ body {
   color: #f5f3ee;
 }
 
+/* Sections below the first one, and the footer, are not styled, laid out or
+   painted until they approach the viewport. This is what keeps first paint
+   fast on slow phones: only the hero has to be rendered up front. The
+   intrinsic size is a placeholder height; `auto` makes the browser remember
+   the real height once a section has been rendered. */
+main > section ~ section,
+main > div > section ~ section,
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Inter Fallback", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 

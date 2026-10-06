@@ -11,6 +11,14 @@ import hotelBookingImg from "../assets/stayfarer-hotel-booking-platform-homepage
 import leadHunterImg from "../assets/leadhunter-crm-dashboard.webp";
 import oracleImg from "../assets/oracle-legal-consultancy-website-homepage.webp";
 import bharatFundAxisImg from "../assets/bharatfundaxis-website-homepage.webp";
+import aranyaPalaceImgSmall from "../assets/aranya-palace-resort-website-homepage-800.webp";
+import hotelBookingImgSmall from "../assets/stayfarer-hotel-booking-platform-homepage-800.webp";
+import leadHunterImgSmall from "../assets/leadhunter-crm-dashboard-800.webp";
+import oracleImgSmall from "../assets/oracle-legal-consultancy-website-homepage-800.webp";
+import bharatFundAxisImgSmall from "../assets/bharatfundaxis-website-homepage-800.webp";
+
+// Screenshots ship at 800px and 1400px; the browser picks one via srcset.
+const srcSet = (small, large) => `${small} 800w, ${large} 1400w`;
 
 export const projectCategories = [
   { id: "all", label: "All" },
@@ -72,6 +80,7 @@ export const projects = [
     liveUrl: "",
     githubUrl: "",
     image: aranyaPalaceImg,
+    imageSrcSet: srcSet(aranyaPalaceImgSmall, aranyaPalaceImg),
     gallery: [aranyaPalaceImg],
   },
   {
@@ -173,6 +182,7 @@ export const projects = [
     liveUrl: "",
     githubUrl: "",
     image: hotelBookingImg,
+    imageSrcSet: srcSet(hotelBookingImgSmall, hotelBookingImg),
     gallery: [hotelBookingImg],
   },
   {
@@ -224,6 +234,7 @@ export const projects = [
     liveUrl: "",
     githubUrl: "",
     image: leadHunterImg,
+    imageSrcSet: srcSet(leadHunterImgSmall, leadHunterImg),
     gallery: [leadHunterImg],
   },
   {
@@ -277,6 +288,7 @@ export const projects = [
     liveUrl: "",
     githubUrl: "",
     image: oracleImg,
+    imageSrcSet: srcSet(oracleImgSmall, oracleImg),
     gallery: [oracleImg],
   },
   {
@@ -319,6 +331,7 @@ export const projects = [
     liveUrl: "https://www.bharatfundaxis.com",
     githubUrl: "",
     image: bharatFundAxisImg,
+    imageSrcSet: srcSet(bharatFundAxisImgSmall, bharatFundAxisImg),
     gallery: [bharatFundAxisImg],
   },
 ];

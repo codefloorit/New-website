@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { m, useMotionTemplate, useMotionValue } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 // Premium closing CTA with a subtle gold glow that follows the cursor (desktop only).
@@ -23,10 +23,10 @@ const ProjectCTA = () => {
       onMouseMove={handleMouseMove}
       className="relative overflow-hidden border-b border-white/5 bg-[#060913] py-24 sm:py-32"
     >
-      <motion.div className="pointer-events-none absolute inset-0" style={{ background }} />
+      <m.div className="pointer-events-none absolute inset-0" style={{ background }} />
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.025] pointer-events-none" />
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -62,7 +62,7 @@ const ProjectCTA = () => {
             Talk to Codefloor
           </Link>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

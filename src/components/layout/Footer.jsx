@@ -6,6 +6,7 @@ import { siteConfig } from "../../data/siteConfig";
 import { itServices } from "../../data/itServices";
 import { taxServices } from "../../data/taxServices";
 import logo from "../../assets/codefloor-it-logo.webp";
+import logoSmall from "../../assets/codefloor-it-logo-160.webp";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -80,6 +81,8 @@ const Footer = () => {
             <Link to="/" aria-label="Codefloor IT home" className="inline-block self-start group transition duration-300">
               <img
                 src={logo}
+                srcSet={`${logoSmall} 160w, ${logo} 320w`}
+                sizes="80px"
                 alt="Codefloor IT logo"
               width={320}
               height={320}

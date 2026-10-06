@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import ProjectMockup from "./ProjectMockup";
 import { projectCategories } from "../../data/projects";
@@ -12,7 +12,7 @@ const ProjectCard = ({ project, size = "small", index = 0 }) => {
   const isWip = project.status === "In progress";
 
   return (
-    <motion.div
+    <m.div
       layout
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -29,7 +29,7 @@ const ProjectCard = ({ project, size = "small", index = 0 }) => {
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#060913] via-[#060913]/10 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
           <div className="transition-transform duration-700 ease-out group-hover:scale-[1.04]">
-            <ProjectMockup type={project.mockup} image={project.image} title={project.title} alt={project.imageAlt} compact wip={isWip} />
+            <ProjectMockup type={project.mockup} image={project.image} srcSet={project.imageSrcSet} sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" title={project.title} alt={project.imageAlt} compact wip={isWip} />
           </div>
         </div>
 
@@ -73,7 +73,7 @@ const ProjectCard = ({ project, size = "small", index = 0 }) => {
 
         <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/0 transition-all duration-500 group-hover:ring-[#D4AF37]/20" />
       </Link>
-    </motion.div>
+    </m.div>
   );
 };
 

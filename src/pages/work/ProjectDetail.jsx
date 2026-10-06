@@ -102,9 +102,11 @@ const ProjectDetail = () => {
                 key={step}
                 className="relative border border-white/5 bg-[#0A0F1A] p-5 shadow-xl transition-all hover:border-[#D4AF37]/30"
               >
-                <span className="mb-2 block font-mono text-2xl font-black text-[#D4AF37]/20">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <span
+                  aria-hidden="true"
+                  data-step={String(i + 1).padStart(2, "0")}
+                  className="mb-2 block font-mono text-2xl font-black text-[#D4AF37]/20 before:content-[attr(data-step)]"
+                />
                 <p className="font-serif font-bold tracking-wide text-white">{step}</p>
               </div>
             ))}

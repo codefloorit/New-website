@@ -81,6 +81,12 @@ for (const { route, html } of pages) {
   }
   if (/href="undefined"|href=""/.test(html)) err("link with empty or undefined href");
 
+  // No React streaming placeholders: content must be in place, not in a hidden
+  // element waiting for a script to move it.
+  if (/<template id="B:|<div hidden id="S:|\$RC\(/.test(html)) err("page content is serialized as a suspended boundary");
+  if (/<link rel="stylesheet"/.test(html)) err("render-blocking stylesheet link (CSS should be inlined)");
+  if (/fonts\.googleapis\.com|fonts\.gstatic\.com/.test(html)) err("third-party font request");
+
   // The page body must be real HTML, not an empty app shell.
   const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<[^>]+>/g, " ");
   if (text.split(/\s+/).length < 150) err("page has almost no server-rendered text");

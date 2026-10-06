@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 // Reusable luxury card for both IT and Tax service listings.
 const ServiceCard = ({ icon: Icon, title, shortDesc, to, index = 0 }) => {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -42,7 +42,7 @@ const ServiceCard = ({ icon: Icon, title, shortDesc, to, index = 0 }) => {
           </p>
         </div>
       </Link>
-    </motion.div>
+    </m.div>
   );
 };
 

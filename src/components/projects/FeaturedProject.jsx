@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import ProjectMockup from "./ProjectMockup";
 import TechnologyTags from "./TechnologyTags";
@@ -21,7 +21,7 @@ const FeaturedProject = ({ project, eyebrowLabel = "Featured Case Study", ctaLab
       <div className="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[#D4AF37]/10 blur-[160px]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -29,10 +29,10 @@ const FeaturedProject = ({ project, eyebrowLabel = "Featured Case Study", ctaLab
           className="mb-12 inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/25 bg-[#D4AF37]/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.25em] text-[#F5D76E]"
         >
           {eyebrowLabel}
-        </motion.div>
+        </m.div>
 
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -82,10 +82,10 @@ const FeaturedProject = ({ project, eyebrowLabel = "Featured Case Study", ctaLab
                 </Link>
               )}
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div style={{ y }} className="order-1 lg:order-2">
-            <motion.div
+          <m.div style={{ y }} className="order-1 lg:order-2">
+            <m.div
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -94,12 +94,13 @@ const FeaturedProject = ({ project, eyebrowLabel = "Featured Case Study", ctaLab
               <ProjectMockup
                 type={project.mockup}
                 image={project.image}
+                srcSet={project.imageSrcSet}
                 title={project.title}
                 alt={project.imageAlt}
                 wip={project.status === "In progress"}
               />
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </div>
     </section>

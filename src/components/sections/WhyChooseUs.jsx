@@ -1,5 +1,5 @@
 import { Target, FileText, Gauge, Search, MessagesSquare, LifeBuoy } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 // How Codefloor IT works. Keep these to practices, not unverifiable numbers.
 const whyChooseUs = [
@@ -49,7 +49,7 @@ const WhyChooseUs = ({ compact = false }) => {
             const IconComponent = icons[i];
             
             return (
-              <motion.div
+              <m.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ const WhyChooseUs = ({ compact = false }) => {
                     {item.desc}
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

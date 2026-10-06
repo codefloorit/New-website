@@ -263,7 +263,20 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").repl
 export const headTags = (seo) => {
   const url = abs(seo.path);
   const image = seo.image ? abs(seo.image) : `${SITE}/og-image.png`;
-  const graph = [organizationSchema, ...(seo.schema || []), ...(seo.crumbs ? [breadcrumbSchema(seo.crumbs)] : [])];
+  // Every page: who publishes it (Organization), the site it belongs to
+  // (WebSite) and the page itself (WebPage), then any page-specific nodes.
+  const webPage = {
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: seo.title,
+    description: seo.description,
+    isPartOf: { "@id": `${SITE}/#website` },
+    about: { "@id": ORG_ID },
+    inLanguage: "en-IN",
+  };
+  const extra = (seo.schema || []).filter((node) => node !== websiteSchema);
+  const graph = [organizationSchema, websiteSchema, webPage, ...extra, ...(seo.crumbs ? [breadcrumbSchema(seo.crumbs)] : [])];
   const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c");
   const m = (attr, key, content) => `<meta data-seo ${attr}="${key}" content="${esc(content)}">`;
 

@@ -13,8 +13,8 @@ const TechMarquee = () => {
 
         <div className="motion-reduce:animate-none flex w-max items-center animate-marquee">
           {doubled.map((name, i) => (
-            <div key={`${name}-${i}`} className="group flex items-center whitespace-nowrap">
-              <span className="mx-6 font-mono text-sm uppercase tracking-widest text-white/40 transition-colors duration-300 group-hover:text-[#F5D76E] sm:mx-8">
+            <div key={`${name}-${i}`} aria-hidden={i >= techStack.length || undefined} className="group flex items-center whitespace-nowrap">
+              <span className="mx-6 font-mono text-sm uppercase tracking-widest text-white/60 transition-colors duration-300 group-hover:text-[#F5D76E] sm:mx-8">
                 {name}
               </span>
               <span className="h-1.5 w-1.5 rotate-45 border border-[#D4AF37]/30 bg-[#D4AF37]/10 opacity-40" />

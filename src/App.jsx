@@ -1,58 +1,61 @@
-import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
+import { Routes, Route, matchPath } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 
-import Home from "./pages/Home";
-import AboutUs from "./pages/about/AboutUs";
+// One chunk per page, so a visitor only downloads the route they open.
+// The HTML for every route is still prerendered (scripts/prerender.mjs).
+//
+// Once a page's chunk has loaded it renders synchronously instead of through
+// React.lazy. main.jsx preloads the current page before hydrating, so the
+// prerendered HTML is hydrated in place; a still-suspended lazy page would be
+// thrown away and re-rendered (a large layout shift) on the first state update.
+const page = (load) => {
+  let Loaded;
+  const remember = (mod) => {
+    Loaded = mod.default;
+    return mod;
+  };
+  const Lazy = lazy(() => load().then(remember));
+  const Page = (props) => (Loaded ? <Loaded {...props} /> : <Lazy {...props} />);
+  Page.preload = () => load().then(remember);
+  return Page;
+};
 
-import ITServices from "./pages/services/ITServices";
-import ITServiceDetail from "./pages/services/ITServiceDetail";
-
-import OurWork from "./pages/work/OurWork";
-import ProjectDetail from "./pages/work/ProjectDetail";
-
-import TaxServices from "./pages/tax/TaxServices";
-import TaxServiceDetail from "./pages/tax/TaxServiceDetail";
-
-import Insights from "./pages/resources/Insights";
-import InsightDetail from "./pages/resources/InsightDetail";
-import FAQs from "./pages/resources/FAQs";
-
-import ContactUs from "./pages/contact/ContactUs";
-
-import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
-import TermsAndConditions from "./pages/legal/TermsAndConditions";
-import Disclaimer from "./pages/legal/Disclaimer";
-
-import NotFound from "./pages/NotFound";
+const NotFound = page(() => import("./pages/NotFound"));
 
 // Every route here must also exist in src/seo.js (metadata, prerender, sitemap).
 // Redirects from the old /it-services, /case-studies and /blog paths live in vercel.json.
+const pages = [
+  ["/", page(() => import("./pages/Home"))],
+  ["/about", page(() => import("./pages/about/AboutUs"))],
+  ["/services", page(() => import("./pages/services/ITServices"))],
+  ["/services/:slug", page(() => import("./pages/services/ITServiceDetail"))],
+  ["/work", page(() => import("./pages/work/OurWork"))],
+  ["/work/:slug", page(() => import("./pages/work/ProjectDetail"))],
+  ["/insights", page(() => import("./pages/resources/Insights"))],
+  ["/insights/:slug", page(() => import("./pages/resources/InsightDetail"))],
+  ["/faqs", page(() => import("./pages/resources/FAQs"))],
+  ["/tax-services", page(() => import("./pages/tax/TaxServices"))],
+  ["/tax-services/:slug", page(() => import("./pages/tax/TaxServiceDetail"))],
+  ["/contact", page(() => import("./pages/contact/ContactUs"))],
+  ["/privacy-policy", page(() => import("./pages/legal/PrivacyPolicy"))],
+  ["/terms-and-conditions", page(() => import("./pages/legal/TermsAndConditions"))],
+  ["/disclaimer", page(() => import("./pages/legal/Disclaimer"))],
+];
+
+// Loads the chunk for the page at `pathname`. Called before hydration.
+export const preloadPage = (pathname) => {
+  const match = pages.find(([path]) => matchPath({ path, end: true }, pathname));
+  return (match ? match[1] : NotFound).preload();
+};
+
 function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-
-        <Route path="/services" element={<ITServices />} />
-        <Route path="/services/:slug" element={<ITServiceDetail />} />
-
-        <Route path="/work" element={<OurWork />} />
-        <Route path="/work/:slug" element={<ProjectDetail />} />
-
-        <Route path="/insights" element={<Insights />} />
-        <Route path="/insights/:slug" element={<InsightDetail />} />
-        <Route path="/faqs" element={<FAQs />} />
-
-        <Route path="/tax-services" element={<TaxServices />} />
-        <Route path="/tax-services/:slug" element={<TaxServiceDetail />} />
-
-        <Route path="/contact" element={<ContactUs />} />
-
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path="/disclaimer" element={<Disclaimer />} />
-
+        {pages.map(([path, Page]) => (
+          <Route key={path} path={path} element={<Page />} />
+        ))}
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

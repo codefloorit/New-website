@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { navigation } from "../../data/navData";
 import logo from "../../assets/codefloor-it-logo.webp";
+import logoSmall from "../../assets/codefloor-it-logo-160.webp";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -70,10 +71,11 @@ const Navbar = () => {
           >
             <img
               src={logo}
+              srcSet={`${logoSmall} 160w, ${logo} 320w`}
+              sizes="(min-width: 1024px) 112px, (min-width: 640px) 96px, 80px"
               alt="Codefloor IT logo"
               width={320}
               height={320}
-              fetchPriority="high"
               className={`w-auto transition-all duration-500 ease-out group-hover:scale-105 ${
                 scrolled ? "h-16 sm:h-20" : "h-20 sm:h-24 lg:h-28"
               }`}
@@ -120,7 +122,7 @@ const Navbar = () => {
                 {/* Desktop Dropdown Menus */}
                 <AnimatePresence>
                   {item.children && openMenu === item.label && (
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 12 }}
@@ -144,7 +146,7 @@ const Navbar = () => {
                           </Link>
                         ))}
                       </div>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
               </div>
@@ -176,7 +178,7 @@ const Navbar = () => {
       {/* Mobile Menu Overlay Drawer */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -209,7 +211,7 @@ const Navbar = () => {
 
                       <AnimatePresence initial={false}>
                         {mobileSubOpen === item.label && (
-                          <motion.div
+                          <m.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
@@ -226,7 +228,7 @@ const Navbar = () => {
                                 {child.label}
                               </Link>
                             ))}
-                          </motion.div>
+                          </m.div>
                         )}
                       </AnimatePresence>
                     </>
@@ -258,7 +260,7 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

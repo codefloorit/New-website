@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 // Reusable scroll-reveal wrapper aligned with premium luxury site mechanics. 
 // direction controls the entry animation: "up" | "left" | "right" | "zoom" | "fade"
@@ -30,7 +30,7 @@ const Reveal = ({
 }) => {
   const variants = variantsFor(direction, distance);
   return (
-    <motion.div
+    <m.div
       className={className}
       initial="hidden"
       whileInView="visible"
@@ -43,7 +43,7 @@ const Reveal = ({
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };
 

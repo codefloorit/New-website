@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { m, useMotionValue, useSpring } from "framer-motion";
 
 // Subtle custom cursor for desktop (fine-pointer, non-touch) devices only.
 // Elements can opt in to a label via a `data-cursor="view" | "explore" | "open"` attribute.
@@ -48,7 +48,7 @@ const CustomCursor = () => {
   if (!enabled) return null;
 
   return (
-    <motion.div
+    <m.div
       aria-hidden="true"
       className={`pointer-events-none fixed left-0 top-0 z-[9999] flex items-center justify-center whitespace-nowrap rounded-full border border-[#D4AF37]/50 bg-[#D4AF37]/10 mix-blend-difference ${
         label ? "px-4 py-2.5" : ""
@@ -63,7 +63,7 @@ const CustomCursor = () => {
       {label && (
         <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#F5D76E]">{label}</span>
       )}
-    </motion.div>
+    </m.div>
   );
 };
 
