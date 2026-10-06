@@ -8,7 +8,7 @@ const sections = [
   },
   {
     heading: "Scope of Services",
-    body: "Services described on this website, including IT development, design, marketing, and tax/financial services, are subject to a separate engagement agreement or proposal outlining specific scope, timelines, and pricing for each client.",
+    body: "Services described on this website, including website and software development and tax/financial services, are subject to a separate engagement agreement or proposal outlining specific scope, timelines, and pricing for each client.",
   },
   {
     heading: "Payments & Pricing",
@@ -16,7 +16,7 @@ const sections = [
   },
   {
     heading: "Intellectual Property",
-    body: "Upon full payment for a development project, ownership of custom-built deliverables (code, designs) transfers to the client, unless otherwise specified in the engagement agreement. Pre-existing tools, frameworks, and internal methodologies remain the property of Codefloor It Tech LLP.",
+    body: "Upon full payment for a development project, ownership of custom-built deliverables (code, designs) transfers to the client, unless otherwise specified in the engagement agreement. Pre-existing tools, frameworks, and internal methodologies remain the property of Codefloor IT Tech LLP.",
   },
   {
     heading: "Client Responsibilities",
@@ -24,7 +24,7 @@ const sections = [
   },
   {
     heading: "Limitation of Liability",
-    body: "While we exercise due care and professional diligence in all engagements, Codefloor It Tech LLP shall not be liable for indirect, incidental, or consequential damages arising from the use of our services, to the extent permitted by applicable law.",
+    body: "While we exercise due care and professional diligence in all engagements, Codefloor IT Tech LLP shall not be liable for indirect, incidental, or consequential damages arising from the use of our services, to the extent permitted by applicable law.",
   },
   {
     heading: "Governing Law",

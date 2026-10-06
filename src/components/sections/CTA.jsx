@@ -4,12 +4,12 @@ import { ArrowUpRight, ShieldAlert } from "lucide-react";
 
 const CTA = ({
   eyebrow = "GET STARTED",
-  title = "Ready to build something that scales?",
-  description = "Talk to Codefloor about your software project or your compliance workload — one accountable team for both.",
-  primaryLabel = "Contact Us",
+  title = "Ready to start your project?",
+  description = "Talk to Codefloor IT about your website or web application. We reply within one business day.",
+  primaryLabel = "Discuss Your Project",
   primaryTo = "/contact",
-  secondaryLabel = "Consulting Desk",
-  secondaryTo = "/contact",
+  secondaryLabel = "Our Services",
+  secondaryTo = "/services",
 }) => {
   return (
     <section className="relative overflow-hidden bg-[#060913] py-24 px-4 sm:px-6 lg:px-8 text-white w-full border-b-4 border-[#D4AF37]">

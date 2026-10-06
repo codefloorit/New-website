@@ -22,7 +22,7 @@ const ProcessJourney = () => {
             From Idea to Production
           </span>
           <h2 className="text-3xl font-serif font-bold tracking-wide text-white sm:text-4xl">
-            How a Codefloor project moves
+            How a Codefloor IT project moves
           </h2>
         </div>
 

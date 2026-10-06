@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Globe,
-  Smartphone,
   Layers,
   ShoppingCart,
   Settings2,
@@ -18,22 +18,18 @@ import TechMarquee from "../../components/sections/TechMarquee";
 import { projects, getFeaturedProject } from "../../data/projects";
 
 const capabilities = [
-  { label: "Web Platforms", icon: Globe },
-  { label: "Mobile Applications", icon: Smartphone },
-  { label: "SaaS Products", icon: Layers },
+  { label: "Business Websites", icon: Globe },
+  { label: "Web Applications", icon: Layers },
   { label: "Booking Systems", icon: LayoutDashboard },
   { label: "E-Commerce", icon: ShoppingCart },
-  { label: "Business Automation", icon: Settings2 },
+  { label: "Website Modernization", icon: Settings2 },
   { label: "Admin Dashboards", icon: LayoutDashboard },
+  { label: "Client Portals", icon: Users },
   { label: "CRM Systems", icon: Users },
 ];
 
 const OurWork = () => {
   const [activeCategory, setActiveCategory] = useState("all");
-
-  useEffect(() => {
-    document.title = "Our Work | Codefloor It Tech LLP";
-  }, []);
 
   const featured = getFeaturedProject();
   const rest = projects.filter((p) => p.id !== featured.id);
@@ -48,8 +44,8 @@ const OurWork = () => {
     <div className="w-full overflow-hidden bg-[#060913] text-white">
       <PageHero
         eyebrow="✦ OUR WORK"
-        title="Products we've engineered, end to end."
-        description="A closer look at how Codefloor turns ideas into real, working software — from first sketch to launch."
+        title="Our work: websites and web applications"
+        description="Projects designed and built by Codefloor IT in Ahmedabad: a resort website, a hotel booking platform, a CRM dashboard, a law firm website and a doctor appointment system."
         breadcrumbItems={[{ label: "Our Work" }]}
       />
 
@@ -60,10 +56,10 @@ const OurWork = () => {
           <div className="mb-12 text-center">
             <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-[#F5D76E]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]" />
-              What We Build
+              Capabilities
             </span>
             <h2 className="text-3xl font-serif font-bold tracking-wide text-white sm:text-4xl">
-              Products across every practice area
+              What we build
             </h2>
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -77,6 +73,10 @@ const OurWork = () => {
               </div>
             ))}
           </div>
+          <p className="mt-10 text-center text-sm text-white/60">
+            Each of these maps to one of our{" "}
+            <Link to="/services" className="text-[#F5D76E] hover:underline">web and software development services</Link>.
+          </p>
         </div>
       </section>
 

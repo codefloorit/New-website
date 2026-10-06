@@ -8,7 +8,7 @@ const sections = [
   },
   {
     heading: "No Client Relationship Implied",
-    body: "Viewing this website or its content does not create a client relationship with Codefloor It Tech LLP. A formal engagement begins only upon signed agreement or confirmed proposal.",
+    body: "Viewing this website or its content does not create a client relationship with Codefloor IT Tech LLP. A formal engagement begins only upon signed agreement or confirmed proposal.",
   },
   {
     heading: "Tax & Regulatory Information",

@@ -22,14 +22,14 @@ const ProjectCard = ({ project, size = "small", index = 0 }) => {
       className={isLarge ? "sm:col-span-2" : ""}
     >
       <Link
-        to={`/case-studies/${project.slug}`}
+        to={`/work/${project.slug}`}
         data-cursor="view"
         className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0A0F1A] transition-all duration-500 hover:border-[#D4AF37]/40 hover:shadow-[0_25px_60px_-20px_rgba(212,175,55,0.25)]"
       >
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#060913] via-[#060913]/10 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
           <div className="transition-transform duration-700 ease-out group-hover:scale-[1.04]">
-            <ProjectMockup type={project.mockup} image={project.image} title={project.title} compact wip={isWip} />
+            <ProjectMockup type={project.mockup} image={project.image} title={project.title} alt={project.imageAlt} compact wip={isWip} />
           </div>
         </div>
 
@@ -52,7 +52,7 @@ const ProjectCard = ({ project, size = "small", index = 0 }) => {
           <p className="text-sm leading-relaxed text-white/60">{project.tagline}</p>
 
           <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
-            {(project.technologies.length ? project.technologies.slice(0, 4) : ["TBD"]).map((tech) => (
+            {(project.technologies.length ? project.technologies.slice(0, 4) : [project.projectType]).map((tech) => (
               <span
                 key={tech}
                 className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-white/50"

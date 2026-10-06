@@ -39,6 +39,8 @@ export default {
         "float-slow": "float 9s ease-in-out infinite",
         "pulse-glow": "pulseGlow 3.5s ease-in-out infinite",
         marquee: "marquee 30s linear infinite",
+        // Entrance for above-the-fold headings: pure CSS so text paints without waiting for JS.
+        rise: "rise 0.7s cubic-bezier(0.25, 1, 0.5, 1) both",
         "spin-slow": "spin 12s linear infinite",
       },
       keyframes: {
@@ -49,6 +51,10 @@ export default {
         pulseGlow: {
           "0%, 100%": { opacity: 0.5, transform: "scale(1)" },
           "50%": { opacity: 1, transform: "scale(1.06)" },
+        },
+        rise: {
+          from: { opacity: 0, transform: "translateY(24px)" },
+          to: { opacity: 1, transform: "translateY(0)" },
         },
         marquee: {
           "0%": { transform: "translateX(0)" },

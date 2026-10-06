@@ -1,85 +1,134 @@
+import { Link } from "react-router-dom";
 import { Target, Eye, Heart, Rocket, Award as AwardIcon } from "lucide-react";
 import PageHero from "../../components/common/PageHero";
 import SectionTitle from "../../components/common/SectionTitle";
 import Reveal from "../../components/common/Reveal";
 import CTA from "../../components/sections/CTA";
 import { siteConfig } from "../../data/siteConfig";
-import { awards } from "../../data/testimonials";
+import { itServices } from "../../data/itServices";
+import { projects } from "../../data/projects";
 
+// Everything on this page must be verifiable. Do not add awards, client
+// counts, team size or milestones unless they are real and can be evidenced.
 const values = [
-  { icon: Target, title: "Precision", desc: "Every filing, every line of code — checked, reviewed, and delivered right the first time." },
-  { icon: Heart, title: "Integrity", desc: "Transparent pricing and honest timelines, even when the honest answer isn't the easy one." },
-  { icon: Rocket, title: "Momentum", desc: "We measure success by how fast our clients can move once we're out of their way." },
-  { icon: AwardIcon, title: "Craft", desc: "We take pride in work that holds up — technically, legally, and aesthetically." },
+  { icon: Target, title: "Precision", desc: "Every page and every line of code is checked and reviewed before it reaches you." },
+  { icon: Heart, title: "Integrity", desc: "Clear pricing and honest timelines, even when the honest answer isn't the easy one." },
+  { icon: Rocket, title: "Momentum", desc: "Work is released in stages so you see progress early and can use the core sooner." },
+  { icon: AwardIcon, title: "Craft", desc: "We take pride in work that holds up technically and visually long after launch." },
 ];
 
-const journey = [
-  { year: siteConfig.founded, title: "Codefloor is founded", desc: "Started as a two-person tax consultancy in Ahmedabad." },
-  { year: 2025,title: "IT division launches", desc: "Added web and app development to serve existing clients end-to-end." },
-  { year: 2025,title: "50+th client milestone", desc: "Crossed 50+ active retainer clients across IT and tax services." },
-  { year: 2025,title: "120+ projects delivered", desc: "Serving clients across 25+ cities with a 10-person team." },
+const facts = [
+  { label: "Registered name", value: siteConfig.name },
+  { label: "Brand name", value: siteConfig.shortName },
+  { label: "Founded", value: siteConfig.founded },
+  { label: "Location", value: siteConfig.address },
+  { label: "Service area", value: "Ahmedabad, Gujarat and across India" },
+  { label: "Working hours", value: siteConfig.businessHours },
 ];
+
+const clientWork = projects.filter((p) => p.category !== "venture");
+const link = "text-[#F5D76E] hover:underline";
 
 const AboutUs = () => {
   return (
     <div className="bg-[#060913] text-white overflow-hidden w-full">
-      
-      {/* Premium Luxury Configured PageHero */}
       <PageHero
-        eyebrow="THE SOVEREIGN CHARTER"
-        title="Built by people who've sat on both sides of the table."
-        description="We started as a tax consultancy frustrated by disconnected IT vendors — so we built the IT team ourselves."
-        breadcrumbItems={[{ label: "About", path: "/about" }, { label: "About Us" }]}
+        eyebrow="About"
+        title={`About ${siteConfig.name}`}
+        description="A web and software development company based in Ahmedabad, Gujarat, India."
+        breadcrumbItems={[{ label: "About" }]}
       />
 
-      {/* Introduction Section */}
+      {/* Who we are */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 border-b border-white/5 bg-[#060913]">
         <div className="absolute inset-0 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.02] pointer-events-none" />
-        
+
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start relative z-10">
-          <Reveal direction="left" className="space-y-6">
-            <div className="space-y-2">
-              <span className="text-[10px] font-mono tracking-widest text-[#D4AF37] uppercase block">✦ ESTABLISHED ARCHITECTURE</span>
-              <h2 className="text-3xl sm:text-4xl font-serif font-bold tracking-wide text-white">Who we are</h2>
-            </div>
-            <p className="text-white/70 text-sm sm:text-base leading-relaxed font-normal">{siteConfig.description}</p>
-            <p className="text-white/70 text-sm sm:text-base leading-relaxed font-normal border-l-2 border-[#D4AF37]/40 pl-4 bg-white/[0.01] py-2">
-              Today, Codefloor operates as two tightly coordinated practices under one company —
-              our development, design, and marketing teams build and grow your digital presence,
-              while our Chartered Accountants and Company Secretaries keep your business legally
-              and financially sound. Clients get one point of contact instead of five vendors.
+          <div className="space-y-6">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold tracking-wide text-white">Who we are</h2>
+            <p className="text-white/70 text-sm sm:text-base leading-relaxed">
+              {siteConfig.name}, known as {siteConfig.shortName}, is a web and software development
+              company founded in {siteConfig.founded} and based in Ahmedabad, Gujarat. We design,
+              build and maintain websites and web applications for businesses and organizations in
+              Ahmedabad, across Gujarat and elsewhere in India.
             </p>
-          </Reveal>
+            <p className="text-white/70 text-sm sm:text-base leading-relaxed border-l-2 border-[#D4AF37]/40 pl-4 bg-white/[0.01] py-2">
+              We work as a solution-focused technology partner. That means starting with the
+              business problem, recommending the smallest build that solves it, agreeing the scope
+              in writing, and staying available after launch, rather than competing purely on the
+              lowest price.
+            </p>
+            <p className="text-white/70 text-sm sm:text-base leading-relaxed">
+              Alongside its web and software work, the company offers a separate line of{" "}
+              <Link to="/tax-services" className={link}>tax and financial services</Link> for small
+              businesses.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
-            <Reveal delay={0.1} className="relative bg-[#0A0F1A] border border-white/5 p-6 group transition-all hover:border-[#D4AF37]/30 shadow-xl">
-              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#D4AF37]/30 group-hover:border-[#D4AF37]" />
-              <Target size={22} className="text-[#F5D76E] mb-4 bg-[#0B1220] p-1 box-content border border-white/10" />
-              <h3 className="font-serif font-bold text-lg text-white mb-2 tracking-wide">Mission</h3>
-              <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-normal">
-                Give growing businesses enterprise-grade technology and compliance without
-                enterprise overhead.
-              </p>
-            </Reveal>
+          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
+            {facts.map((f) => (
+              <div key={f.label} className="relative bg-[#0A0F1A] border border-white/5 p-6 shadow-xl">
+                <dt className="text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]/70 mb-2">{f.label}</dt>
+                <dd className="font-serif font-bold text-white tracking-wide">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
 
-            <Reveal delay={0.18} className="relative bg-[#0A0F1A] border border-white/5 p-6 group transition-all hover:border-[#D4AF37]/30 shadow-xl">
-              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#D4AF37]/30 group-hover:border-[#D4AF37]" />
-              <Eye size={22} className="text-[#F5D76E] mb-4 bg-[#0B1220] p-1 box-content border border-white/10" />
-              <h3 className="font-serif font-bold text-lg text-white mb-2 tracking-wide">Vision</h3>
-              <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-normal">
-                To be India's most trusted single partner for business technology and financial
-                compliance.
-              </p>
-            </Reveal>
+      {/* What we do */}
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0F1A] border-b border-white/5">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
+          <div>
+            <h2 className="text-3xl font-serif font-bold tracking-wide text-white mb-6">What we do</h2>
+            <ul className="flex flex-col gap-4">
+              {itServices.map((s) => (
+                <li key={s.slug} className="text-sm sm:text-base text-white/70 leading-relaxed">
+                  <Link to={`/services/${s.slug}`} className={`font-semibold ${link}`}>{s.title}</Link>: {s.shortDesc}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2 className="text-3xl font-serif font-bold tracking-wide text-white mb-6">What we have built</h2>
+            <ul className="flex flex-col gap-4">
+              {clientWork.map((p) => (
+                <li key={p.slug} className="text-sm sm:text-base text-white/70 leading-relaxed">
+                  <Link to={`/work/${p.slug}`} className={`font-semibold ${link}`}>{p.title}</Link>: {p.projectType} ({p.industry})
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Core Values Section */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0F1A] border-b border-white/5">
+      {/* Mission & vision */}
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#060913] border-b border-white/5">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <Reveal delay={0.1} className="relative bg-[#0A0F1A] border border-white/5 p-6 group transition-all hover:border-[#D4AF37]/30 shadow-xl">
+            <Target size={22} className="text-[#F5D76E] mb-4 bg-[#0B1220] p-1 box-content border border-white/10" />
+            <h2 className="font-serif font-bold text-lg text-white mb-2 tracking-wide">Mission</h2>
+            <p className="text-sm text-white/60 leading-relaxed">
+              Give growing businesses well-built websites and web applications without enterprise
+              overhead.
+            </p>
+          </Reveal>
+          <Reveal delay={0.18} className="relative bg-[#0A0F1A] border border-white/5 p-6 group transition-all hover:border-[#D4AF37]/30 shadow-xl">
+            <Eye size={22} className="text-[#F5D76E] mb-4 bg-[#0B1220] p-1 box-content border border-white/10" />
+            <h2 className="font-serif font-bold text-lg text-white mb-2 tracking-wide">Vision</h2>
+            <p className="text-sm text-white/60 leading-relaxed">
+              To be a technology partner businesses in Gujarat trust for clear advice and dependable
+              delivery.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0F1A] border-b-2 border-[#D4AF37]">
         <div className="max-w-7xl mx-auto relative z-10">
-          <SectionTitle eyebrow="✦ CORPORATE COMPASS" title="What guides how we work" />
-          
+          <SectionTitle eyebrow="Our values" title="What guides how we work" />
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
             {values.map((v, i) => (
               <Reveal key={v.title} delay={i * 0.08}>
@@ -97,60 +146,13 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Journey Timeline Section */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#060913] border-b border-white/5">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[500px] rounded-full bg-[#D4AF37]/5 blur-[150px] pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <SectionTitle eyebrow="✦ CHRONICLE METRICS" title="A decade of growing alongside our clients" />
-          
-          <div className="mt-20 max-w-3xl mx-auto relative">
-            {journey.map((item, i) => (
-              <Reveal key={item.year} delay={i * 0.08} direction="left">
-                <div className="flex gap-6 pb-12 last:pb-0 relative group">
-                  {i !== journey.length - 1 && (
-                    <span className="absolute left-[27px] top-14 bottom-0 w-[1px] bg-dashed border-l border-white/10 group-hover:border-[#D4AF37]/30 transition-colors" />
-                  )}
-                  <span className="flex-shrink-0 flex h-14 w-14 items-center justify-center bg-[#0A0F1A] border border-[#D4AF37]/40 font-mono text-xs font-bold text-[#F5D76E] shadow-xl group-hover:bg-[#D4AF37] group-hover:text-[#060913] transition-all duration-300">
-                    {item.year}
-                  </span>
-                  <div className="pt-2 bg-white/[0.01] border border-white/5 hover:border-white/10 p-5 w-full transition-all">
-                    <h3 className="font-serif font-bold text-white text-base tracking-wide">{item.title}</h3>
-                    <p className="text-xs sm:text-sm text-white/60 mt-2 leading-relaxed font-normal">{item.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Achievements / Awards Section */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0F1A] border-b-2 border-[#D4AF37]">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <SectionTitle eyebrow="✦ HONOUR LAURELS" title="Recognition along the way" />
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-            {awards.map((a, i) => (
-              <Reveal key={a.title} delay={i * 0.08}>
-                <div className="relative bg-[#060913] border border-white/5 p-6 h-full group transition-all hover:border-[#D4AF37]/30 shadow-xl flex flex-col justify-between">
-                  <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#D4AF37]/20 group-hover:border-[#D4AF37]" />
-                  <div>
-                    <AwardIcon size={20} className="text-[#F5D76E] mb-4 bg-[#0A0F1A] p-1 box-content border border-white/10" />
-                    <h3 className="font-serif font-bold text-white text-sm mb-2 leading-snug tracking-wide group-hover:text-[#F5D76E] transition-colors">{a.title}</h3>
-                  </div>
-                  <p className="text-[10px] font-mono text-white/40 tracking-wider uppercase pt-4 border-t border-white/5 mt-4">
-                    {a.org} &bull; {a.year}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Embedded Global Ecosystem CTA Block */}
-      <CTA />
+      <CTA
+        title="Have a website or web application in mind?"
+        description={`Talk to ${siteConfig.shortName}. We reply within one business day.`}
+        primaryLabel="Talk to Codefloor IT"
+        secondaryLabel="View Our Work"
+        secondaryTo="/work"
+      />
     </div>
   );
 };

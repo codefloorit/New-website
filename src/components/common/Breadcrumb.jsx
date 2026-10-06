@@ -7,6 +7,7 @@ const Breadcrumb = ({ items = [] }) => {
     <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[11px] sm:text-xs font-mono uppercase tracking-wider bg-[#060913]/60 border border-white/5 px-4 py-2 self-start backdrop-blur-sm">
       <Link 
         to="/" 
+        aria-label="Home"
         className="flex items-center gap-1 text-white/40 hover:text-[#F5D76E] focus:outline-none transition-colors duration-300"
       >
         <Home size={13} className="stroke-[1.8]" />

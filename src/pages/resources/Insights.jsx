@@ -1,11 +1,12 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Search } from "lucide-react";
 import PageHero from "../../components/common/PageHero";
 import BlogCard from "../../components/cards/BlogCard";
 import CTA from "../../components/sections/CTA";
 import { blogCategories, blogPosts } from "../../data/blogPosts";
 
-const Blog = () => {
+const Insights = () => {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
 
@@ -25,10 +26,10 @@ const Blog = () => {
   return (
     <>
       <PageHero
-        eyebrow="Resources"
-        title="Insights on tech, tax, and running a business that grows."
-        description="Practical guides from our developers, designers, and Chartered Accountants."
-        breadcrumbItems={[{ label: "Resources" }, { label: "Blog" }]}
+        eyebrow="Insights"
+        title="Insights on websites and web applications"
+        description="Practical guides from Codefloor IT on cost, choosing a development partner, booking systems, CRMs and keeping a website fast."
+        breadcrumbItems={[{ label: "Insights" }]}
       />
 
       <section className="section-pad">
@@ -42,6 +43,7 @@ const Blog = () => {
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
+                  aria-label="Search articles"
                   placeholder="Search articles..."
                   className="w-full rounded-full bg-card border border-line pl-11 pr-4 py-3 text-sm text-ink placeholder:text-muted/70 focus:border-accent/50 outline-none"
                 />
@@ -77,19 +79,19 @@ const Blog = () => {
           {/* Sidebar */}
           <aside className="flex flex-col gap-8">
             <div className="surface-card p-6">
-              <h3 className="font-display font-semibold text-ink mb-4">Recent Posts</h3>
+              <h2 className="font-display font-semibold text-ink mb-4">Recent Posts</h2>
               <ul className="flex flex-col gap-4">
                 {recentPosts.map((p) => (
                   <li key={p.slug}>
-                    <a href={`/blog/${p.slug}`} className="text-sm text-muted hover:text-accent transition-colors leading-snug block">
+                    <Link to={`/insights/${p.slug}`} className="text-sm text-muted hover:text-accent transition-colors leading-snug block">
                       {p.title}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="surface-card p-6">
-              <h3 className="font-display font-semibold text-ink mb-2">Get insights monthly</h3>
+              <h2 className="font-display font-semibold text-ink mb-2">Get insights monthly</h2>
               <p className="text-sm text-muted mb-4">Straight to your inbox, no spam.</p>
               <form
                 onSubmit={(e) => e.preventDefault()}
@@ -115,4 +117,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Insights;

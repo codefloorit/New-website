@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowRight, CheckCircle2, FileText, IndianRupee } from "lucide-react";
 import PageHero from "../../components/common/PageHero";
@@ -13,10 +12,6 @@ const TaxServiceDetail = () => {
   const { slug } = useParams();
   const service = getTaxServiceBySlug(slug);
 
-  useEffect(() => {
-    if (service) document.title = `${service.title} | Codefloor It Tech LLP`;
-  }, [service]);
-
   if (!service) return <Navigate to="/tax-services" replace />;
 
   const related = taxServices.filter((s) => s.slug !== slug).slice(0, 3);
@@ -26,7 +21,7 @@ const TaxServiceDetail = () => {
     <div className="bg-[#060913] text-white overflow-hidden w-full">
       {/* Luxury Configured PageHero */}
       <PageHero
-        eyebrow="TAXATION & AUDIT DESK"
+        eyebrow="Tax & Financial Services"
         title={service.title}
         description={service.overview}
         breadcrumbItems={[{ label: "Tax & Financial Services", path: "/tax-services" }, { label: service.title }]}
@@ -156,7 +151,7 @@ const TaxServiceDetail = () => {
             </p>
             
             <Link 
-              to="/book-consultation" 
+              to="/contact" 
               className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] text-[#0A0F1A] font-bold text-xs uppercase font-mono tracking-widest px-8 py-4 shadow-xl hover:brightness-110 active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
             >
               <span>Book a Consultation</span> 

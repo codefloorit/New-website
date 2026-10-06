@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
-import { CheckCircle2 } from "lucide-react";
+import { Link, Navigate, useParams } from "react-router-dom";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import CaseStudyHero from "../../components/projects/CaseStudyHero";
 import CaseStudySection from "../../components/projects/CaseStudySection";
 import ProjectGallery from "../../components/projects/ProjectGallery";
@@ -8,20 +7,15 @@ import TechnologyTags from "../../components/projects/TechnologyTags";
 import RelatedProjects from "../../components/projects/RelatedProjects";
 import ProjectCTA from "../../components/projects/ProjectCTA";
 import { getProjectBySlug, getRelatedProjects } from "../../data/projects";
+import { getItServiceBySlug } from "../../data/itServices";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
   const project = getProjectBySlug(slug);
 
-  useEffect(() => {
-    if (project) {
-      document.title = `${project.title} | Codefloor It Tech LLP`;
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute("content", project.tagline);
-    }
-  }, [project]);
+  if (!project) return <Navigate to="/work" replace />;
 
-  if (!project) return <Navigate to="/case-studies" replace />;
+  const service = getItServiceBySlug(project.service);
 
   const related = getRelatedProjects(slug, 3);
   const hasResults = project.metrics && project.metrics.length > 0;
@@ -88,13 +82,17 @@ const ProjectDetail = () => {
         </CaseStudySection>
       )}
 
-      <CaseStudySection {...next()} eyebrow="✦ TECH STACK" title="Technology">
-        <TechnologyTags items={project.technologies} size="lg" />
-      </CaseStudySection>
+      {project.technologies.length > 0 && (
+        <CaseStudySection {...next()} eyebrow="✦ TECH STACK" title="Technology">
+          <TechnologyTags items={project.technologies} size="lg" />
+        </CaseStudySection>
+      )}
 
-      <CaseStudySection {...next()} eyebrow="✦ SCREENS" title="Product gallery">
-        <ProjectGallery images={project.gallery} title={project.title} />
-      </CaseStudySection>
+      {project.gallery.length > 1 && (
+        <CaseStudySection {...next()} eyebrow="✦ SCREENS" title="Product gallery">
+          <ProjectGallery images={project.gallery} title={project.title} />
+        </CaseStudySection>
+      )}
 
       {project.process.length > 0 && (
         <CaseStudySection {...next()} eyebrow="✦ PROCESS" title="Development process">
@@ -124,6 +122,20 @@ const ProjectDetail = () => {
               </div>
             ))}
           </div>
+        </CaseStudySection>
+      )}
+
+      {service && (
+        <CaseStudySection {...next()} eyebrow="✦ SERVICE" title="Need something similar?">
+          <p>
+            This project falls under our {service.title.toLowerCase()} service. {service.shortDesc}
+          </p>
+          <Link
+            to={`/services/${service.slug}`}
+            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#F5D76E] hover:underline"
+          >
+            {service.title} by Codefloor IT <ArrowRight size={14} />
+          </Link>
         </CaseStudySection>
       )}
 

@@ -1,11 +1,5 @@
 const TechnologyTags = ({ items = [], size = "sm" }) => {
-  if (!items.length) {
-    return (
-      <span className="font-mono text-[10px] uppercase tracking-widest text-white/25">
-        Tech stack — TBD
-      </span>
-    );
-  }
+  if (!items.length) return null;
 
   const pad = size === "lg" ? "px-3.5 py-1.5 text-xs" : "px-2.5 py-1 text-[11px]";
 

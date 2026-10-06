@@ -1,5 +1,5 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import { FaLinkedinIn, FaTwitter, FaInstagram, FaFacebookF } from "react-icons/fa";
+import { FaLinkedinIn, FaInstagram, FaFacebookF } from "react-icons/fa";
 import PageHero from "../../components/common/PageHero";
 import ContactForm from "../../components/forms/ContactForm";
 import Reveal from "../../components/common/Reveal";
@@ -10,10 +10,10 @@ const ContactUs = () => {
     <>
       {/* Luxury Configured PageHero */}
       <PageHero
-        eyebrow="COMMUNICATION REGISTRY"
-        title="Let's talk about your project."
-        description="Reach out and our centralized operational desk will respond within one business day — usually much sooner."
-        breadcrumbItems={[{ label: "Contact", path: "/contact" }, { label: "Contact Us" }]}
+        eyebrow="Contact"
+        title="Contact Codefloor IT"
+        description="Tell us about your website or web application project. We are based in Ahmedabad, Gujarat, and reply within one business day."
+        breadcrumbItems={[{ label: "Contact" }]}
       />
 
       <section className="relative overflow-hidden bg-[#060913] py-24 px-4 sm:px-6 lg:px-8 text-white w-full border-b border-white/5">
@@ -26,11 +26,11 @@ const ContactUs = () => {
           {/* Info Column (Left Matrix) */}
           <Reveal direction="left" className="flex flex-col gap-6">
             {[
-              { icon: MapPin, label: "Office Registry Address", value: siteConfig.address },
-              { icon: Phone, label: "Corporate Desk Phone", value: siteConfig.phone },
-              { icon: Mail, label: "Secure Email Gateway", value: siteConfig.email },
-              { icon: Clock, label: "Operational Audit Hours", value: siteConfig.businessHours },
-            ].map((item, idx) => (
+              { icon: MapPin, label: "Location", value: siteConfig.address },
+              { icon: Phone, label: "Phone & WhatsApp", value: siteConfig.phone, href: `tel:${siteConfig.phone.replace(/\s+/g, "")}` },
+              { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
+              { icon: Clock, label: "Working Hours", value: siteConfig.businessHours },
+            ].map((item) => (
               <div 
                 key={item.label} 
                 className="relative bg-[#0A0F1A]/80 border border-white/5 p-5 flex gap-5 shadow-xl group transition-all duration-300 hover:border-[#D4AF37]/30"
@@ -44,10 +44,10 @@ const ContactUs = () => {
                 
                 <div>
                   <p className="text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]/60 mb-1">
-                    VECTOR // 0{idx + 1} — {item.label}
+                    {item.label}
                   </p>
                   <p className="text-sm font-serif text-white/90 leading-relaxed tracking-wide">
-                    {item.value}
+                    {item.href ? <a href={item.href} className="hover:text-[#F5D76E]">{item.value}</a> : item.value}
                   </p>
                 </div>
               </div>
@@ -56,14 +56,14 @@ const ContactUs = () => {
             {/* Premium Social Vault Anchors */}
             <div className="flex gap-3 pt-2">
               {[
-                { Icon: FaLinkedinIn, href: siteConfig.social.linkedin },
-                { Icon: FaTwitter, href: siteConfig.social.twitter },
-                { Icon: FaInstagram, href: siteConfig.social.instagram },
-                { Icon: FaFacebookF, href: siteConfig.social.facebook },
-              ].map(({ Icon, href }, i) => (
+                { Icon: FaLinkedinIn, label: "LinkedIn", href: siteConfig.social.linkedin },
+                { Icon: FaInstagram, label: "Instagram", href: siteConfig.social.instagram },
+                { Icon: FaFacebookF, label: "Facebook", href: siteConfig.social.facebook },
+              ].map(({ Icon, label, href }) => (
                 <a
-                  key={i}
+                  key={label}
                   href={href}
+                  aria-label={`Codefloor IT on ${label}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-11 w-11 items-center justify-center rounded-none bg-[#0A0F1A] border border-white/10 text-white/50 hover:text-[#F5D76E] hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/5 transition-all duration-300"
@@ -82,8 +82,8 @@ const ContactUs = () => {
             
             <div className="p-6 sm:p-10 bg-[#0A0F1A] border border-white/5">
               <div className="mb-6 space-y-1">
-                <span className="text-[9px] font-mono text-[#D4AF37] tracking-[0.2em] uppercase block">✦ INGESTION DESK</span>
-                <h3 className="text-xl font-serif font-bold tracking-wide">Secure Communications Processing</h3>
+                <h2 className="text-xl font-serif font-bold tracking-wide">Send us a message</h2>
+                <p className="text-sm text-white/50">Your message opens in WhatsApp, ready to send.</p>
               </div>
               <ContactForm />
             </div>

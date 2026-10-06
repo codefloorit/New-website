@@ -7,12 +7,13 @@ const BlogCard = ({ post, index = 0 }) => {
     day: "numeric",
     month: "short",
     year: "numeric",
+    timeZone: "UTC",
   });
 
   return (
     <Reveal delay={(index % 3) * 0.08}>
       <Link 
-        to={`/blog/${post.slug}`} 
+        to={`/insights/${post.slug}`} 
         className="relative bg-[#0A0F1A] border border-white/5 group flex flex-col h-full p-6 sm:p-7 transition-all duration-300 hover:border-[#D4AF37]/30 hover:bg-[#0c1424] shadow-xl overflow-hidden"
       >
         {/* Heritage Corner Accent - Only lights up fully on card hover */}

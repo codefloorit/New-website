@@ -73,7 +73,7 @@ const FeaturedProject = ({ project, eyebrowLabel = "Featured Case Study", ctaLab
                 </a>
               ) : (
                 <Link
-                  to={`/case-studies/${project.slug}`}
+                  to={`/work/${project.slug}`}
                   data-cursor="explore"
                   className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-[#060913] shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_45px_-6px_rgba(212,175,55,0.55)]"
                 >
@@ -95,6 +95,7 @@ const FeaturedProject = ({ project, eyebrowLabel = "Featured Case Study", ctaLab
                 type={project.mockup}
                 image={project.image}
                 title={project.title}
+                alt={project.imageAlt}
                 wip={project.status === "In progress"}
               />
             </motion.div>

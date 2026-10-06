@@ -1,0 +1,32 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/it-services", "destination": "/services", "permanent": true },
+    { "source": "/it-services/website-development", "destination": "/services/business-website-development", "permanent": true },
+    { "source": "/it-services/:slug", "destination": "/services", "permanent": true },
+    { "source": "/case-studies", "destination": "/work", "permanent": true },
+    { "source": "/case-studies/:slug", "destination": "/work/:slug", "permanent": true },
+    { "source": "/projects", "destination": "/work", "permanent": true },
+    { "source": "/projects/:slug", "destination": "/work/:slug", "permanent": true },
+    { "source": "/blog", "destination": "/insights", "permanent": true },
+    { "source": "/blog/:slug", "destination": "/insights/:slug", "permanent": true },
+    { "source": "/testimonials", "destination": "/", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  ]
+}

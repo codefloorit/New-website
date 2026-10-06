@@ -2,14 +2,14 @@ import { projectCategories } from "../../data/projects";
 
 const ProjectFilters = ({ active, onChange }) => {
   return (
-    <div className="flex flex-wrap justify-center gap-2 sm:gap-3" role="tablist" aria-label="Filter projects by category">
+    <div className="flex flex-wrap justify-center gap-2 sm:gap-3" role="group" aria-label="Filter projects by category">
       {projectCategories.map((cat) => {
         const isActive = active === cat.id;
         return (
           <button
             key={cat.id}
-            role="tab"
-            aria-selected={isActive}
+            type="button"
+            aria-pressed={isActive}
             onClick={() => onChange(cat.id)}
             className={`rounded-full border px-4 py-2 font-mono text-[11px] uppercase tracking-widest transition-all duration-300 sm:px-5 ${
               isActive

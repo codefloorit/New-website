@@ -1,8 +1,17 @@
-import { ShieldCheck, Wallet, Headset, Timer, Lock, Smile } from "lucide-react";
+import { Target, FileText, Gauge, Search, MessagesSquare, LifeBuoy } from "lucide-react";
 import { motion } from "framer-motion";
-import { whyChooseUs } from "../../data/testimonials";
 
-const icons = [ShieldCheck, Wallet, Headset, Timer, Lock, Smile];
+// How Codefloor IT works. Keep these to practices, not unverifiable numbers.
+const whyChooseUs = [
+  { title: "Solution First", desc: "We start from the business problem and recommend the smallest build that solves it, even when that is less work for us." },
+  { title: "Written Scope & Quote", desc: "Pages, features, timeline and cost are agreed in writing before work starts, so there are no surprises later." },
+  { title: "Built for Speed", desc: "Optimized images, lean code and tested mobile layouts, because slow pages lose visitors." },
+  { title: "Search-Ready Structure", desc: "Clean URLs, page titles, headings and structured data are part of the build, not an add-on." },
+  { title: "Direct Communication", desc: "You talk to the people building your project, with progress shared at each milestone." },
+  { title: "Support After Launch", desc: "A support window after launch and an optional maintenance plan for updates, backups and fixes." },
+];
+
+const icons = [Target, FileText, Gauge, Search, MessagesSquare, LifeBuoy];
 
 const WhyChooseUs = ({ compact = false }) => {
   return (
@@ -22,13 +31,13 @@ const WhyChooseUs = ({ compact = false }) => {
         {!compact && (
           <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 border border-[#D4AF37]/20 bg-[#D4AF37]/5 text-[10px] font-mono font-bold tracking-[0.25em] text-[#F5D76E] uppercase">
-              ✦ Why Codefloor Ecosystem
+              Why Codefloor IT
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif font-bold text-white tracking-tight leading-tight">
-              Built for businesses that can't afford to slow down
+              A solution-focused technology partner
             </h2>
             <p className="text-white/60 text-sm sm:text-base max-w-xl mx-auto font-normal">
-              Six reasons clients stay with us long after their first project.
+              How we work on every website and web application project.
             </p>
             <div className="w-36 h-[1px] bg-[#D4AF37]/30 mx-auto pt-1" />
           </div>
@@ -37,7 +46,7 @@ const WhyChooseUs = ({ compact = false }) => {
         {/* Vintage Structural Matrix Grid */}
         <div className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-6 ${!compact ? "mt-12" : ""}`}>
           {whyChooseUs.map((item, i) => {
-            const IconComponent = icons[i] || ShieldCheck;
+            const IconComponent = icons[i];
             
             return (
               <motion.div
@@ -60,7 +69,7 @@ const WhyChooseUs = ({ compact = false }) => {
                 {/* Content Alignment */}
                 <div className="space-y-3">
                   <span className="block font-mono text-[9px] text-[#D4AF37]/60 tracking-widest uppercase">
-                    NODE // 0{i + 1}
+                    0{i + 1}
                   </span>
                   <h3 className="text-lg font-serif font-bold text-white group-hover:text-[#F5D76E] transition-colors">
                     {item.title}

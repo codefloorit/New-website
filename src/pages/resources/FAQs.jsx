@@ -26,9 +26,9 @@ const FAQs = () => {
     <>
       <PageHero
         eyebrow="FAQs"
-        title="Answers to what we're asked most."
-        description="Can't find what you need? Reach out on our Contact page."
-        breadcrumbItems={[{ label: "Resources", path: "/blog" }, { label: "FAQs" }]}
+        title="Web development FAQs"
+        description="Direct answers about Codefloor IT, website and web application development, cost, timelines and how we work."
+        breadcrumbItems={[{ label: "FAQs" }]}
       />
 
       <section className="section-pad">
@@ -39,6 +39,7 @@ const FAQs = () => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              aria-label="Search FAQs"
               placeholder="Search FAQs..."
               className="w-full rounded-full bg-card border border-line pl-12 pr-4 py-3.5 text-sm text-ink placeholder:text-muted/70 focus:border-accent/50 outline-none"
             />

@@ -27,7 +27,7 @@ const PlaceholderFill = ({ label = "Screenshot coming soon", wip = false }) => (
 // Wraps an <img> with a graceful fallback to PlaceholderFill if the source
 // fails to load at runtime (e.g. a broken or unreachable external URL) —
 // not just when no image was provided at all.
-const MockupImage = ({ image, title, wip, label }) => {
+const MockupImage = ({ image, title, alt, eager, wip, label }) => {
   const [failed, setFailed] = useState(false);
 
   if (!image || failed) return <PlaceholderFill label={label} wip={wip} />;
@@ -35,15 +35,19 @@ const MockupImage = ({ image, title, wip, label }) => {
   return (
     <img
       src={image}
-      alt={title}
+      alt={alt || `${title} screenshot`}
+      width={1400}
+      height={680}
       className="h-full w-full object-cover"
-      loading="lazy"
+      loading={eager ? "eager" : "lazy"}
+      fetchPriority={eager ? "high" : undefined}
+      decoding="async"
       onError={() => setFailed(true)}
     />
   );
 };
 
-const BrowserFrame = ({ image, title, wip }) => (
+const BrowserFrame = ({ image, title, wip, ...img }) => (
   <div className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#0A0F1A] shadow-2xl">
     <div className="flex items-center gap-2 border-b border-white/10 bg-[#060913] px-4 py-3">
       <div className="flex gap-1.5">
@@ -56,12 +60,12 @@ const BrowserFrame = ({ image, title, wip }) => (
       </div>
     </div>
     <div className="relative aspect-[16/10] w-full">
-      <MockupImage image={image} title={title} wip={wip} />
+      <MockupImage image={image} title={title} wip={wip} {...img} />
     </div>
   </div>
 );
 
-const MobileFrame = ({ image, title, compact, wip }) => {
+const MobileFrame = ({ image, title, compact, wip, ...img }) => {
   const phone = (
     <div
       className={`relative mx-auto w-full overflow-hidden rounded-[2rem] border-[6px] border-[#0A0F1A] bg-[#0A0F1A] shadow-2xl ring-1 ring-white/10 ${
@@ -70,7 +74,7 @@ const MobileFrame = ({ image, title, compact, wip }) => {
     >
       <div className="absolute left-1/2 top-0 z-10 h-4 w-24 -translate-x-1/2 rounded-b-xl bg-[#0A0F1A]" />
       <div className="relative aspect-[9/19]">
-        <MockupImage image={image} title={title} wip={wip} label="Preview coming soon" />
+        <MockupImage image={image} title={title} wip={wip} label="Preview coming soon" {...img} />
       </div>
     </div>
   );
@@ -85,7 +89,7 @@ const MobileFrame = ({ image, title, compact, wip }) => {
   );
 };
 
-const DashboardFrame = ({ image, title, wip }) => (
+const DashboardFrame = ({ image, title, wip, ...img }) => (
   <div className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#0A0F1A] shadow-2xl">
     <div className="flex">
       <div className="hidden w-14 flex-col gap-3 border-r border-white/10 bg-[#060913] p-3 sm:flex">
@@ -94,17 +98,17 @@ const DashboardFrame = ({ image, title, wip }) => (
         ))}
       </div>
       <div className="relative aspect-[16/10] flex-1">
-        <MockupImage image={image} title={title} wip={wip} />
+        <MockupImage image={image} title={title} wip={wip} {...img} />
       </div>
     </div>
   </div>
 );
 
-const ProjectMockup = ({ type = "browser", image, title, className = "", compact = false, wip = false }) => {
+const ProjectMockup = ({ type = "browser", image, title, alt, eager = false, className = "", compact = false, wip = false }) => {
   const Frame = type === "mobile" ? MobileFrame : type === "dashboard" ? DashboardFrame : BrowserFrame;
   return (
     <div className={className}>
-      <Frame image={image} title={title} compact={compact} wip={wip} />
+      <Frame image={image} title={title} alt={alt} eager={eager} compact={compact} wip={wip} />
     </div>
   );
 };

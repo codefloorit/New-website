@@ -6,23 +6,18 @@
 // `metrics` stays [] until a result has been verified; the case-study page
 // only renders a Results section when metrics/impact actually exist.
 
-import aranyaPalaceImg from "../assets/Aranya Place.png";
-import hotelBookingImg from "../assets/Hotel booking.png";
-import leadHunterImg from "../assets/Leadhunter.png";
-import oracleImg from "../assets/Oracle.png";
-import bharatFundAxisImg from "../assets/Bharataxis fund.png";
+import aranyaPalaceImg from "../assets/aranya-palace-resort-website-homepage.webp";
+import hotelBookingImg from "../assets/stayfarer-hotel-booking-platform-homepage.webp";
+import leadHunterImg from "../assets/leadhunter-crm-dashboard.webp";
+import oracleImg from "../assets/oracle-legal-consultancy-website-homepage.webp";
+import bharatFundAxisImg from "../assets/bharatfundaxis-website-homepage.webp";
 
 export const projectCategories = [
   { id: "all", label: "All" },
-  { id: "web", label: "Web" },
-  { id: "mobile", label: "Mobile" },
-  { id: "saas", label: "SaaS" },
-  { id: "ecommerce", label: "E-Commerce" },
-  { id: "healthcare", label: "Healthcare" },
   { id: "hospitality", label: "Hospitality" },
+  { id: "healthcare", label: "Healthcare" },
   { id: "booking", label: "Booking" },
   { id: "crm", label: "CRM" },
-  { id: "business-automation", label: "Business Automation" },
   { id: "legal", label: "Legal Services" },
   { id: "venture", label: "Group Venture" },
 ];
@@ -32,6 +27,11 @@ export const projects = [
   {
     id: "aranya-palace",
     slug: "aranya-palace",
+    projectType: "Resort & hotel website",
+    seoTitle: "Aranya Palace Resort Website Case Study",
+    metaDescription: "How Codefloor IT built the Aranya Palace Resort & Spa website in Ahmedabad: room showcase, gallery, offers and a homepage booking search.",
+    imageAlt: "Aranya Palace Resort & Spa website homepage with booking search",
+    service: "business-website-development",
     title: "Aranya Palace",
     client: "Aranya Palace Resort & Spa",
     tagline: "A digital experience built for hospitality.",
@@ -42,7 +42,7 @@ export const projects = [
     mockup: "browser",
     featured: true,
     description:
-      "Aranya Palace is a restored haveli resort and spa in Ahmedabad, Gujarat, set among fifteen acres of mango orchard. Codefloor built a hospitality website that presents the property, its rooms, and its setting with the same care as an in-person stay.",
+      "Aranya Palace is a restored haveli resort and spa in Ahmedabad, Gujarat, set among fifteen acres of mango orchard. Codefloor IT built a hospitality website that presents the property, its rooms, and its setting with the same care as an in-person stay.",
     challenge:
       "A hospitality brand's website is often the first impression a guest forms, well before check-in. Aranya Palace needed a site that could showcase the property, its rooms, and its setting persuasively, while making it simple for a prospective guest to check availability and get in touch.",
     approach:
@@ -77,6 +77,11 @@ export const projects = [
   {
     id: "doctor-appointment-booking",
     slug: "doctor-appointment-booking",
+    projectType: "Appointment booking web application",
+    seoTitle: "Doctor Appointment Booking System Case Study",
+    metaDescription: "A doctor appointment booking web application by Codefloor IT: doctor search, date and time booking, and dashboards for doctors and admins.",
+    imageAlt: "",
+    service: "custom-web-application-development",
     title: "Doctor Appointment Booking",
     client: "",
     tagline: "A complete healthcare appointment management platform.",
@@ -123,6 +128,11 @@ export const projects = [
   {
     id: "hotel-booking",
     slug: "hotel-booking",
+    projectType: "Hotel booking web application",
+    seoTitle: "Stayfarer Hotel Booking Platform Case Study",
+    metaDescription: "Stayfarer is a hotel search and booking platform built by Codefloor IT: destination search, listings, room selection and booking confirmation.",
+    imageAlt: "Stayfarer hotel booking platform homepage with destination and date search",
+    service: "custom-web-application-development",
     title: "Stayfarer",
     client: "Stayfarer",
     tagline: "A complete hotel search and booking product.",
@@ -168,6 +178,11 @@ export const projects = [
   {
     id: "leadhunter",
     slug: "leadhunter",
+    projectType: "CRM web application",
+    seoTitle: "LeadHunter CRM Dashboard Case Study",
+    metaDescription: "LeadHunter is a CRM web application built by Codefloor IT: company discovery, lead pipeline, follow-ups, CSV import and reporting.",
+    imageAlt: "LeadHunter CRM dashboard showing company counts and lead pipeline",
+    service: "custom-web-application-development",
     title: "LeadHunter",
     client: "LeadHunter CRM",
     tagline: "New-company intelligence and a lead pipeline, in one dashboard.",
@@ -214,6 +229,11 @@ export const projects = [
   {
     id: "oracle-legal-consultancy",
     slug: "oracle-legal-consultancy",
+    projectType: "Law firm website",
+    seoTitle: "Oracle Legal Consultancy Website Case Study",
+    metaDescription: "How Codefloor IT built a professional website for Oracle Legal Consultancy, with services, team, insights and a consultation booking path.",
+    imageAlt: "Oracle Legal Consultancy website homepage with consultation call to action",
+    service: "business-website-development",
     title: "Oracle Legal Consultancy",
     client: "Oracle Legal Consultancy",
     tagline: "Modern digital experience for a professional legal consultancy.",
@@ -224,7 +244,7 @@ export const projects = [
     mockup: "browser",
     featured: false,
     description:
-      "Oracle Legal Consultancy needed a digital presence that reflects the trust and professionalism expected of a legal practice. Codefloor developed a modern, premium website — built around the message 'Protecting Your Rights. Strengthening Your Future.' — to represent the consultancy online.",
+      "Oracle Legal Consultancy needed a digital presence that reflects the trust and professionalism expected of a legal practice. Codefloor IT developed a modern, premium website — built around the message 'Protecting Your Rights. Strengthening Your Future.' — to represent the consultancy online.",
     clientContext:
       "Oracle Legal Consultancy provides legal consultancy and advisory services to individuals, businesses, and organizations navigating complex legal matters.",
     challenge:
@@ -266,6 +286,11 @@ export const projects = [
     // and CTA below are reused verbatim from that original implementation.
     id: "bharatfundaxis",
     slug: "bharatfundaxis",
+    projectType: "Group venture website",
+    seoTitle: "BharatFundAxis: Codefloor Group Venture",
+    metaDescription: "BharatFundAxis is a sister venture of Codefloor IT offering MSME funding guidance, licensing and compliance support.",
+    imageAlt: "BharatFundAxis website homepage",
+    service: "",
     title: "BharatFundAxis",
     client: "BharatFundAxis",
     tagline: "Capital Access & Enterprise Growth Advisory",
@@ -278,7 +303,7 @@ export const projects = [
     description:
       "Providing institutional funding assistance, business loan guidance, statutory licensing, and compliance frameworks for scaling enterprises and MSMEs.",
     clientContext:
-      "BharatFundAxis is a sister venture within the Codefloor group — a 'Sovereign Capital & Growth' initiative supporting MSMEs and scaling enterprises, alongside Codefloor's own software and compliance services.",
+      "BharatFundAxis is a sister venture within the Codefloor IT group — a 'Sovereign Capital & Growth' initiative supporting MSMEs and scaling enterprises, alongside Codefloor's own software and compliance services.",
     challenge: "",
     approach: "",
     solution: "",

@@ -3,8 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { navigation } from "../../data/navData";
-import { siteConfig } from "../../data/siteConfig";
-import logo from "../../assets/Logo.png";
+import logo from "../../assets/codefloor-it-logo.webp";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -71,7 +70,10 @@ const Navbar = () => {
           >
             <img
               src={logo}
-              alt="Codefloor It Tech LLP"
+              alt="Codefloor IT logo"
+              width={320}
+              height={320}
+              fetchPriority="high"
               className={`w-auto transition-all duration-500 ease-out group-hover:scale-105 ${
                 scrolled ? "h-16 sm:h-20" : "h-20 sm:h-24 lg:h-28"
               }`}
@@ -155,7 +157,7 @@ const Navbar = () => {
               to="/contact"
               className="rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] text-black px-6 py-2.5 text-sm font-semibold hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98] transition duration-300"
             >
-              Get Started
+              Discuss Your Project
             </Link>
           </div>
 
@@ -252,7 +254,7 @@ const Navbar = () => {
                   className="w-full block rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] py-3 text-center font-semibold text-black shadow-lg shadow-[#D4AF37]/10 active:scale-[0.99] transition-transform"
                   onClick={() => setMobileOpen(false)}
                 >
-                  Get Started
+                  Discuss Your Project
                 </Link>
               </div>
             </div>

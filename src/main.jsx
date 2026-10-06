@@ -1,31 +1,24 @@
-import { StrictMode, useEffect, useState } from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter, HashRouter } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { StrictMode } from "react";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
-import Loader from "./components/common/Loader.jsx";
 
-const Root = () => {
-  const [loading, setLoading] = useState(true);
+// Links shared before the move away from hash routing looked like /#/about.
+if (window.location.hash.startsWith("#/")) {
+  window.location.replace(window.location.hash.slice(1));
+}
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 900);
-    return () => clearTimeout(timer);
-  }, []);
-
-  return (
-    <>
-      <AnimatePresence>{loading && <Loader />}</AnimatePresence>
-      <HashRouter>
-        <App />
-      </HashRouter>
-    </>
-  );
-};
-
-createRoot(document.getElementById("root")).render(
+const app = (
   <StrictMode>
-    <Root />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>
 );
+
+// Production pages are prerendered (scripts/prerender.mjs), so hydrate them;
+// the dev server serves an empty root.
+const root = document.getElementById("root");
+if (root.hasChildNodes()) hydrateRoot(root, app);
+else createRoot(root).render(app);

@@ -1,6 +1,6 @@
-# Codefloor It Tech LLP — Website
+# Codefloor IT Tech LLP — Website
 
-A premium, dark-themed, fully responsive corporate website for **Codefloor It Tech LLP Private Limited**, built with React 19, Vite, Tailwind CSS, Framer Motion, React Router, Swiper, and EmailJS.
+A premium, dark-themed, fully responsive corporate website for **Codefloor IT Tech LLP**, built with React 19, Vite, Tailwind CSS, Framer Motion, React Router, Swiper, and EmailJS.
 
 ## Getting Started
 
@@ -27,24 +27,26 @@ npm run preview   # preview the production build locally
 3. **Company details**
    All contact info, social links, address, and business hours live in one place: `src/data/siteConfig.js`.
 
+## Build, routing and SEO
+
+`npm run build` does three things: builds the client, builds a server bundle, and runs `scripts/prerender.mjs`, which writes one static HTML file per route into `dist/` together with `sitemap.xml`, `robots.txt` and `llms.txt`. Run `npm run check:seo` afterwards to verify titles, canonicals, structured data, internal links and image alt text.
+
+- Routes are declared in `src/App.jsx`. Their titles, descriptions and JSON-LD live in `src/seo.js`; a route missing from `src/seo.js` is not prerendered and is not in the sitemap.
+- Hosting is Vercel. `vercel.json` sets clean URLs, redirects from the old paths, caching and security headers.
+- Only publish facts that are true: no invented clients, reviews, awards, statistics or addresses.
+
 ## Editing content
 
 Almost all text content is centralized in `src/data/`:
-- `itServices.js` — all 20 IT service pages (auto-generates routes like `/it-services/website-development`)
-- `taxServices.js` — all 15 tax/financial service pages
-- `teamData.js`, `testimonials.js`, `blogPosts.js`, `caseStudies.js`, `generalFaqs.js`, `navData.js`
+- `siteConfig.js`: company name, contact details, official social profiles (also used in structured data)
+- `itServices.js`: the web and software services (routes like `/services/business-website-development`)
+- `taxServices.js`: tax and financial services (`/tax-services/...`)
+- `projects.js`: portfolio projects (`/work/...`)
+- `blogPosts.js`: Insights articles (`/insights/...`)
+- `generalFaqs.js`, `navData.js`
 
-Add a new IT/Tax service by adding one object to the relevant data file — a full detail page is generated automatically, no new component needed.
-
-## Folder structure
-
-```
-src/
-  components/   layout, common, cards, forms, sections
-  pages/        Home, about/, services/, tax/, resources/, contact/, legal/
-  data/         all site content (single source of truth)
-```
+Adding an object to one of these files creates the page, its metadata and its sitemap entry automatically.
 
 ## Design system
 
-Colors, fonts, and effects are defined in `tailwind.config.js` and `src/index.css` — update the `colors` block there to re-theme the whole site.
+Colors, fonts, and effects are defined in `tailwind.config.js` and `src/index.css`.

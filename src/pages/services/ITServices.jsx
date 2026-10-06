@@ -1,79 +1,61 @@
-import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import PageHero from "../../components/common/PageHero";
 import ServiceCard from "../../components/cards/ServiceCard";
+import SectionTitle from "../../components/common/SectionTitle";
 import CTA from "../../components/sections/CTA";
 import { itServices } from "../../data/itServices";
 
 const ITServices = () => {
-  const categories = useMemo(
-    () => ["All", ...new Set(itServices.map((s) => s.category))],
-    []
-  );
-  const [filter, setFilter] = useState("All");
-  const filtered = filter === "All" ? itServices : itServices.filter((s) => s.category === filter);
-
   return (
     <div className="bg-[#060913] text-white overflow-hidden w-full">
-      {/* Luxury Configured PageHero */}
       <PageHero
-        eyebrow="CAPABILITY DEPLOYMENT"
-        title="Every technology capability your business needs, in one place."
-        description="20 services across development, design, marketing, and infrastructure — delivered by one accountable team."
-        breadcrumbItems={[{ label: "IT Services" }]}
+        eyebrow="Services"
+        title="Web and software development services"
+        description="Codefloor IT, based in Ahmedabad, builds business websites, custom web applications and e-commerce stores, modernizes outdated websites, and maintains them after launch."
+        breadcrumbItems={[{ label: "Services" }]}
       />
 
-      {/* Main Structural Inventory Catalog */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#060913] border-b border-white/5">
-        {/* Heritage Backdrop Canvas */}
         <div className="absolute inset-0 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.02] pointer-events-none" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 h-[500px] w-[600px] rounded-full bg-[#D4AF37]/5 blur-[160px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
-          
-          {/* Institutional Matrix Filtering Controls */}
-          <div className="flex flex-wrap justify-center gap-3 mb-16 border-b border-white/5 pb-8 max-w-4xl mx-auto">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                className={`relative px-5 py-2.5 rounded-none text-xs font-mono font-bold tracking-widest uppercase transition-all duration-300 border ${
-                  filter === cat
-                    ? "bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] text-[#0A0F1A] border-transparent shadow-[0_0_20px_rgba(212,175,55,0.2)] scale-[1.02]"
-                    : "border-white/10 bg-[#0A0F1A]/60 text-white/50 hover:text-[#F5D76E] hover:border-[#D4AF37]/40"
-                }`}
-              >
-                {/* Micro corner accent indicator for active pillar */}
-                {filter === cat && (
-                  <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#FFF5C3] border border-[#0A0F1A]" />
-                )}
-                {cat}
-              </button>
-            ))}
-          </div>
+          <SectionTitle
+            eyebrow="What we build"
+            title="Five services, one team"
+            description="Each service is scoped in writing before work starts. If you are not sure which one you need, tell us the problem and we will recommend the right starting point."
+          />
 
-          {/* Premium Legacy Service Card Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((s, i) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+            {itServices.map((s, i) => (
               <ServiceCard
                 key={s.slug}
                 icon={s.icon}
                 title={s.title}
                 shortDesc={s.shortDesc}
-                to={`/it-services/${s.slug}`}
+                to={`/services/${s.slug}`}
                 index={i}
               />
             ))}
           </div>
-          
+
+          <p className="mt-14 text-center text-sm text-white/60">
+            See these services in practice in{" "}
+            <Link to="/work" className="text-[#F5D76E] hover:underline">our website and web application projects</Link>
+            , or read{" "}
+            <Link to="/faqs" className="text-[#F5D76E] hover:underline">answers on cost, timelines and process</Link>.
+          </p>
         </div>
       </section>
 
-      {/* Sovereign Framework Call To Action Block */}
       <CTA
-        eyebrow="NOT SURE WHERE TO START?"
-        title="Tell us the problem — we'll recommend the service."
-        primaryLabel="Book a Free Consultation"
+        eyebrow="Not sure where to start?"
+        title="Tell us the problem. We'll recommend the service."
+        description="A short call is enough to understand what you need and whether we are the right team for it."
+        primaryLabel="Discuss Your Project"
         primaryTo="/contact"
+        secondaryLabel="View Our Work"
+        secondaryTo="/work"
       />
     </div>
   );

@@ -1,29 +1,16 @@
-import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import Breadcrumb from "../common/Breadcrumb";
 import ProjectMockup from "./ProjectMockup";
-import { projectCategories } from "../../data/projects";
-
-const categoryLabel = (id) => projectCategories.find((c) => c.id === id)?.label || id;
-
-const wordVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: 0.05 * i, duration: 0.6, ease: [0.25, 1, 0.5, 1] },
-  }),
-};
 
 const CaseStudyHero = ({ project }) => {
   const words = project.title.split(" ");
 
   const meta = [
+    { label: "Project type", value: project.projectType },
     { label: "Industry", value: project.industry },
-    { label: "Category", value: categoryLabel(project.category) },
-    { label: "Year", value: project.year || "TBD" },
+    { label: "Year", value: project.year },
     { label: "Status", value: project.status },
-  ];
+  ].filter((item) => item.value);
 
   return (
     <section className="relative overflow-hidden border-b border-white/5 bg-[#060913] pb-16 pt-14 sm:pt-16">
@@ -31,7 +18,7 @@ const CaseStudyHero = ({ project }) => {
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-[#D4AF37]/8 blur-[160px]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Breadcrumb items={[{ label: "Our Work", path: "/case-studies" }, { label: project.title }]} />
+        <Breadcrumb items={[{ label: "Our Work", path: "/work" }, { label: project.title }]} />
 
         <div className="mt-8 max-w-4xl">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-[#F5D76E]">
@@ -41,20 +28,18 @@ const CaseStudyHero = ({ project }) => {
 
           <h1 className="flex flex-wrap gap-x-3 text-4xl font-serif font-bold leading-[1.1] tracking-wide text-white sm:text-6xl">
             {words.map((word, i) => (
-              <motion.span key={i} custom={i} initial="hidden" animate="visible" variants={wordVariants}>
+              <span key={i} className="animate-rise" style={{ animationDelay: `${0.05 * i}s` }}>
                 {word}
-              </motion.span>
+              </span>
             ))}
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg"
+          <p
+            style={{ animationDelay: "0.3s" }}
+            className="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg animate-rise"
           >
             {project.tagline}
-          </motion.p>
+          </p>
 
           {project.liveUrl && (
             <a
@@ -77,19 +62,16 @@ const CaseStudyHero = ({ project }) => {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-          className="mt-14"
-        >
+        <div style={{ animationDelay: "0.15s" }} className="mt-14 animate-rise">
           <ProjectMockup
             type={project.mockup}
             image={project.image}
             title={project.title}
+            alt={project.imageAlt}
+            eager
             wip={project.status === "In progress"}
           />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

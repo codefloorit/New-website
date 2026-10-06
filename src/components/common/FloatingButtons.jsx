@@ -22,7 +22,7 @@ const FloatingButtons = () => {
       {/* Corporate Gold Architectural Call Anchor */}
       <a
         href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
-        aria-label="Call us"
+        aria-label="Call Codefloor IT"
         className="group relative flex h-12 w-12 items-center justify-center rounded-none bg-gradient-to-br from-[#D4AF37] to-[#F5D76E] text-[#0A0F1A] shadow-xl transition-all duration-300 hover:brightness-110 hover:scale-105 focus:outline-none"
       >
         {/* Heritage blueprints corners */}

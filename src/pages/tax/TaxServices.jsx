@@ -8,8 +8,8 @@ const TaxServices = () => {
     <div className="bg-[#060913] text-white overflow-hidden w-full">
       {/* Luxury Configured PageHero */}
       <PageHero
-        eyebrow="TAXATION & COMPLIANCE REGISTRY"
-        title="Compliance handled by people who actually read the fine print."
+        eyebrow="Tax & Financial Services"
+        title="Tax and financial services"
         description="15 services covering tax filing, registration, and ongoing compliance — managed by certified professionals."
         breadcrumbItems={[{ label: "Tax & Financial Services" }]}
       />
@@ -22,13 +22,6 @@ const TaxServices = () => {
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
           
-          {/* Section Heading Decor Hook */}
-          <div className="mb-12 border-b border-white/5 pb-6 max-w-xs">
-            <span className="text-[10px] font-mono tracking-[0.2em] text-[#D4AF37] uppercase block">
-              ✦ ARCHITECTURAL PILLARS
-            </span>
-          </div>
-
           {/* Premium Legacy Service Card Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {taxServices.map((s, i) => (

@@ -1,4 +1,3 @@
-import Reveal from "../common/Reveal";
 import Breadcrumb from "../common/Breadcrumb";
 
 const PageHero = ({ eyebrow, title, description, breadcrumbItems = [] }) => {
@@ -9,11 +8,9 @@ const PageHero = ({ eyebrow, title, description, breadcrumbItems = [] }) => {
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <Reveal>
-          <Breadcrumb items={breadcrumbItems} />
-        </Reveal>
+        <Breadcrumb items={breadcrumbItems} />
         
-        <Reveal delay={0.08} className="mt-6 max-w-3xl">
+        <div className="mt-6 max-w-3xl animate-rise">
           {eyebrow && (
             <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#F5D76E] mb-4 bg-[#D4AF37]/10 border border-[#D4AF37]/20 px-3 py-1 rounded-full">
               <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]" />
@@ -30,7 +27,7 @@ const PageHero = ({ eyebrow, title, description, breadcrumbItems = [] }) => {
               {description}
             </p>
           )}
-        </Reveal>
+        </div>
       </div>
     </section>
   );
