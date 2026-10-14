@@ -27,6 +27,13 @@ export const organizationSchema = {
   foundingDate: String(siteConfig.founded),
   email: siteConfig.email,
   telephone: siteConfig.phone.replace(/\s+/g, ""),
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    telephone: siteConfig.phone.replace(/\s+/g, ""),
+    email: siteConfig.email,
+    areaServed: "IN",
+  },
   address: {
     "@type": "PostalAddress",
     addressLocality: siteConfig.city,
@@ -213,6 +220,7 @@ const projectPages = projects.map((p) =>
         headline: p.tagline,
         description: p.description,
         genre: p.projectType,
+        creativeWorkStatus: p.status,
         url: abs(`/work/${p.slug}`),
         creator: { "@id": ORG_ID },
         ...(p.image ? { image: abs(p.image) } : {}),
@@ -250,7 +258,7 @@ const articlePages = blogPosts.map((p) =>
 // Every canonical, indexable URL on the site. Drives prerendering and the sitemap.
 export const routes = [...staticPages, ...servicePages, ...projectPages, ...articlePages, ...taxPages];
 
-const notFound = page("/404", `Page Not Found | ${BRAND}`, "The page you are looking for does not exist.", { noindex: true });
+const notFound = page("/404", `Page Not Found | ${BRAND}`, "The page you are looking for does not exist or has moved. Browse Codefloor IT services, projects and insights instead.", { noindex: true });
 
 const normalize = (pathname) => (pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname);
 
