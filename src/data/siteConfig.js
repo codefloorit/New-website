@@ -22,9 +22,9 @@ export const siteConfig = {
   founded: 2025,
   // Official profiles only — these also feed the Organization schema (sameAs).
   social: {
-    linkedin: "https://linkedin.com/company/codefloorit",
-    instagram: "https://instagram.com/codefloorit",
-    facebook: "https://facebook.com/codefloorit",
+    linkedin: "https://www.linkedin.com/company/codefloorit/",
+    instagram: "https://www.instagram.com/codefloorit/",
+    facebook: "https://www.facebook.com/CodeFloorit/",
   },
   mapEmbed:
     "https://maps.app.goo.gl/xSdFu53tqhFGAfPu8",

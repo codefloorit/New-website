@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { FaLinkedinIn, FaInstagram, FaFacebookF } from "react-icons/fa";
@@ -9,16 +8,6 @@ import logo from "../../assets/codefloor-it-logo.webp";
 import logoSmall from "../../assets/codefloor-it-logo-160.webp";
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (!email) return;
-    setSubscribed(true);
-    setEmail("");
-  };
-
   const featuredTax = taxServices.slice(0, 5);
   const companyLinks = [
     { label: "About Codefloor IT", path: "/about" },
@@ -41,37 +30,17 @@ const Footer = () => {
               Practical web and software insights
             </h2>
             <p className="text-white/60 text-sm mt-1.5">
-              Monthly insights on websites, web applications and growth. No spam.
+              Guides on website cost, web applications, speed and modernization.
             </p>
           </div>
-          <div className="w-full lg:w-auto max-w-sm flex flex-col gap-2">
-            <form
-              onSubmit={handleSubscribe}
-              className="flex w-full gap-2"
-            >
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                aria-label="Email address"
-                placeholder="Enter your email"
-                className="flex-1 rounded-full bg-[#0B1220]/60 border border-white/10 px-5 py-3 text-sm text-white placeholder:text-white/40 focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 outline-none transition-all"
-              />
-              <button
-                type="submit"
-                className="rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] text-black px-5 py-3 flex-shrink-0 flex items-center justify-center hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] active:scale-95 transition duration-300"
-                aria-label="Subscribe"
-              >
-                <Send size={15} />
-              </button>
-            </form>
-            {subscribed && (
-              <p className="text-[#D4AF37] text-xs px-2 font-mono mt-1">
-                Thanks for subscribing! ✓
-              </p>
-            )}
-          </div>
+          {/* No mailing list exists yet, so link to the articles instead of
+              collecting emails that go nowhere. */}
+          <Link
+            to="/insights"
+            className="rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] text-black px-6 py-3 text-sm font-semibold flex-shrink-0 flex items-center gap-2 hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] active:scale-95 transition duration-300"
+          >
+            Read our insights <Send size={15} />
+          </Link>
         </div>
 
         {/* Link Columns Grid */}
